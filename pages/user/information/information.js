@@ -10,14 +10,30 @@ Page({
    
   onLoad: function (options) {
     this.setData({
-      userName: options.userName,
+      userOpenid: options.userOpenid,
       comOpenid: options.comOpenid
     });
   },
 
   //提交个人基本信息
   submit: function(){
-
+    wx.cloud.callFunction({
+      name: 'uploadBasicInfo',
+      data: {
+        userOpenid: this.data.userOpenid,
+        name: this.data.name,
+        tel: this.data.tel
+      },
+      success: res => {
+        this.setData({
+          userPerInfo: res.result.userPerInfo,
+          userManageComOpenid: res.result.userManageComOpenid
+        })
+      },
+      fail: err => {
+        console.error('【index】【云函数上传个人基本信息】【失败】', err)
+      }
+    })
     wx.navigateTo({
       url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
     })
