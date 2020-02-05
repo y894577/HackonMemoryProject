@@ -10,8 +10,8 @@
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>社区ID：</label>
-    <input type="number" name='ComID' placeholder="请输入社区ID"></input>
+    <input type="number" name='ComID' id="ComID" placeholder="请输入社区ID"></input>
     <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit">确认</view>
+  <view class="confirm" form-type="submit" bindtap="JumpToManager">确认</view>
 </form>

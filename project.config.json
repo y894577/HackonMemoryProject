@@ -17,7 +17,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "wx22aa8130ddeed0a4",
+	"appid": "wx91d0d3fbfd9f3f51",
 	"projectname": "%E8%AE%B0%E7%96%AB",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -50,29 +50,29 @@
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "pages/user/information/information",
+					"id": 0,
+					"name": "information",
 					"pathName": "pages/user/information/information",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/user/type/type",
+					"id": 1,
+					"name": "type",
 					"pathName": "pages/user/type/type",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/user/adress/adress",
+					"id": 2,
+					"name": "adress",
 					"pathName": "pages/user/adress/adress",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/user/successful/successful",
+					"id": 3,
+					"name": "successful",
 					"pathName": "pages/user/successful/successful",
 					"query": "",
 					"scene": null
@@ -85,15 +85,15 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/manager/register/register",
+					"id": 5,
+					"name": "register",
 					"pathName": "pages/manager/register/register",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/manager/manager",
+					"id": 6,
+					"name": "manager",
 					"pathName": "pages/manager/manager",
 					"query": "",
 					"scene": null
@@ -113,8 +113,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/manager/joinCom/joinCom",
+					"id": 9,
+					"name": "joinCom",
 					"pathName": "pages/manager/joinCom/joinCom",
 					"query": "",
 					"scene": null

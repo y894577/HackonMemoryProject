@@ -1,11 +1,13 @@
-// pages/manager/joinCom/joinCom.js
+// pages/manager/manager.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    ComID: '',
+    code:'/pages/image/wait.png',
+    communityName:'华南师范大学南海校区',
+    id:'1526271623213',
   },
 
   /**
@@ -62,18 +64,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  JumpToManager: function(){
-    var that = this;
-    // 获取input填写的id
-    that.setData({
-      ComID: e.detail.ComID
-    });
-    // 此处需要搜索id
-    var ID = that.data.ComID;
-    
-    wx.redirectTo({
-      url: '../manager',
-    })
   }
 })

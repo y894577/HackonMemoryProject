@@ -64,5 +64,20 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  JumpToStatistics: function (e) {
+    wx.navigateTo({
+      url: 'statistics/statistics',
+    })
+  },
+  ExportData: function(e){
+    wx.navigateTo({
+      url: 'export/export',
+    })
+  },
+  ReturnComRegister: function () {
+    wx.redirectTo({
+      url: 'register/register',
+    })
   }
 })
