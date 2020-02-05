@@ -3,7 +3,7 @@
   <view class="row">
     <view class="blue"></view>
     <!--住户登记-->
-    <view class="text" wx:if="{{zhuhu}}">住户登记</view>
+    <view class="text" wx:if="{{flag}}">住户登记</view>
     <!--访客登记-->
     <view class="text" wx:else>到访登记</view>
   </view>
@@ -11,7 +11,7 @@
 </view>
 <form bindsubmit="submitForm">
   <!--住户登记-->
-  <view class='col box' wx:if="{{zhuhu}}">
+  <view class='col box' wx:if="{{flag}}">
     <label>您所住的单元：</label>
     <input type="text" name='livingUnit' placeholder="请输入详细地址"></input>
     <view class="line"></view>

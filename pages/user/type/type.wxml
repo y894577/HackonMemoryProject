@@ -8,11 +8,11 @@
 </view>
 <!--选择框-->
 <view class="container">
-  <view class="row box">
+  <view class="row box" bindtouchend="jumpToAdressPage" data-flag="local">
     <image src="/pages/image/zhuhu.png" class="zhuhu"></image>
     <view class="zhuhu-text">我是本小区住户</view>
   </view>
-  <view class="row box">
+  <view class="row box" bindtouchend="jumpToAdressPage" data-flag="outsider">
     <image src="/pages/image/unzhuhu.png" class="unzhuhu"></image>
     <view class="unzhuhu-text">我是到访人员</view>
   </view>

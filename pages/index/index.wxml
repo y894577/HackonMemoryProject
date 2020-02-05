@@ -2,7 +2,7 @@
 <view class="container">
   <view class="sweep">
     <view class="sweepmiddle">
-    <image src="/pages/image/saoma.png" mode="widthFix"></image>
+    <image src="/pages/image/saoma.png" mode="widthFix" bindtouchend="jumpToNextPage"></image>
     </view>
   </view>
   <view class="historical-record" bindtap="JumpToHistory">历史记录</view>
