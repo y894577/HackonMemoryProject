@@ -1,0 +1,29 @@
+<!--pages/manager/register/register.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">创建新社区</view>
+  </view>
+  <view class="center">
+    <view class='title-bottom'>建立社区，对于到访人员进行统计，若要加入已有社区，请点击页面底部的加入已有社区按钮。</view>
+  </view>
+</view>
+<form bindsubmit="submitForm">
+  <view class='col box'>
+    <label>社区名称：</label>
+    <input type="text" name='communityName' placeholder="请输入社区名称"></input>
+    <view class="line"></view>
+  </view>
+  <view class='col box'>
+    <label>社区负责人：</label>
+    <input type="text"  name='name' placeholder="请输入姓名"></input>
+    <view class="line"></view>
+  </view>
+  <view class='col box'>
+    <label>社区负责人联系方式：</label>
+    <input type="number"  name='phonenumber' placeholder="请输入电话号码" bindinput='blurPhone'></input>
+     <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">确认</view>
+  <view class="had">加入已有社区</view>
+</form>

@@ -1,0 +1,22 @@
+<!--pages/user/adress/adress.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text" wx:if="{{zhuhu}}">住户登记</view>
+    <view class="text" wx:else>到访登记</view>
+  </view>
+    <view class='title-bottom'>只需一次填写，即可实现快速无接触式到访登记</view>
+</view>
+<form bindsubmit="submitForm">
+  <view class='col box' wx:if="{{zhuhu}}">
+    <label>您所住的单元：</label>
+    <input type="text" name='livingUnit' placeholder="请输入详细地址"></input>
+    <view class="line"></view>
+  </view>
+  <view class='col box' wx:else>
+    <label>前往单元：</label>
+    <input type="text" name='goingUnit' placeholder="请输入详细地址"></input>
+    <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">确认</view>
+</form>

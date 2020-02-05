@@ -1,0 +1,10 @@
+<!--pages/user/successful/successful.wxml-->
+<view class="container">
+  <view class="right">
+    <image src="/pages/image/right.png" class="icon"></image>
+  </view>
+  <view class="bigtext">登记成功</view>
+  <view class="name">{{name}}</view>
+  <view class="time">{{time}}</view>
+  <view class="confirm" >确认并退出</view>
+</view>

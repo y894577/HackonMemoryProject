@@ -1,0 +1,21 @@
+<!--pages/user/information/information.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">信息登记</view>
+  </view>
+  <view class='title-bottom'>只需一次填写，即可实现快速无接触式到访登记</view>
+</view>
+<form bindsubmit="submitForm">
+  <view class='col box'>
+    <label>真实姓名：</label>
+    <input type="text" name='name' placeholder="请输入姓名"></input>
+    <view class="line"></view>
+  </view>
+  <view class='col box'>
+    <label>电话号码：</label>
+    <input type="number" name='phonenumber' placeholder="请输入手机号码" bindinput='blurPhone'></input>
+     <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">确认</view>
+</form>

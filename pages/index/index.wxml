@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="sweep">
+    <view class="sweepmiddle">
+    <image src="/pages/image/saoma.png" mode="widthFix"></image>
+    </view>
+  </view>
+  <view class="historical-record">历史记录</view>
+  <view class='text'>我是管理人员</view>
+</view>

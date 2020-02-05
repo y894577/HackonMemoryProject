@@ -1,0 +1,17 @@
+<!--pages/user/Record/record.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">到访记录</view>
+  </view>
+  <view class="center">
+    <view class='title-bottom'>您的所有记录都会被严格保密，只有你去过的小区能获得相应的到访信息</view>
+  </view>
+</view>
+<view class="list" wx:for='{{newList}}' wx:key='newList{{index}}' wx:for-item='new'>
+  <view class="row box">
+    <view class="list-item">{{new.adress}}</view>
+    
+    <view class="list-time">{{new.time}}</view>
+  </view>
+</view>

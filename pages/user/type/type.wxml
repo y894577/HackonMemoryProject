@@ -1,0 +1,18 @@
+<!--pages/user/Type/type.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">类型选择</view>
+  </view>
+  <view class='title-bottom'>只需一次填写，即可实现快速无接触式到访登记</view>
+</view>
+<view class="container">
+  <view class="row box">
+    <image src="/pages/image/zhuhu.png" class="zhuhu"></image>
+    <view class="zhuhu-text">我是本小区住户</view>
+  </view>
+  <view class="row box">
+    <image src="/pages/image/unzhuhu.png" class="unzhuhu"></image>
+    <view class="unzhuhu-text">我是到访人员</view>
+  </view>
+</view>
