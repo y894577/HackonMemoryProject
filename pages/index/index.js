@@ -76,33 +76,33 @@ Page({
       hasUserInfo: true
     })
   },
-<<<<<<< Updated upstream
-  JumpToInfo: function(e){
-    wx.navigateTo({
-      url: '../user/information/information'
-    })
-  },
-  JumpToHistory: function(e){
-    console.log(e)
-    wx.navigateTo({
-      url: '../user/record/record'
-    })
-  },
-  // 判断该跳转到register还是manager
-  JudgeRegister: function(e){
+// <<<<<<< Updated upstream
+//   JumpToInfo: function(e){
+//     wx.navigateTo({
+//       url: '../user/information/information'
+//     })
+//   },
+//   JumpToHistory: function(e){
+//     console.log(e)
+//     wx.navigateTo({
+//       url: '../user/record/record'
+//     })
+//   },
+//   // 判断该跳转到register还是manager
+//   JudgeRegister: function(e){
     
-  },
-  JumpToRegister: function(e){
-    wx.navigateTo({
-      url: '../user/record/record',
-    })
-  },
-  JumpToManager: function(e){
-    wx.redirectTo({
-      url: '../manager/manager',
-    })
-  }
-=======
+//   },
+//   JumpToRegister: function(e){
+//     wx.navigateTo({
+//       url: '../user/record/record',
+//     })
+//   },
+//   JumpToManager: function(e){
+//     wx.redirectTo({
+//       url: '../manager/manager',
+//     })
+//   }
+// =======
 
 
   
@@ -173,5 +173,4 @@ Page({
     else
       this.jumpToTypePage();
    }
->>>>>>> Stashed changes
 })
