@@ -1,0 +1,4 @@
+<!--pages/manager/statistics/statistics.wxml-->
+<view class="container">
+  <view class="head"></view>
+</view>

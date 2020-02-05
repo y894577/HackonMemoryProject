@@ -7,7 +7,9 @@
     "pages/user/adress/adress",
     "pages/user/successful/successful",
     "pages/user/record/record",
-    "pages/manager/register/register"
+    "pages/manager/register/register",
+    "pages/manager/statistics/statistics",
+    "pages/manager/export/export"
   ],
   "window": {
     "backgroundTextStyle": "light",
