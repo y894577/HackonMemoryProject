@@ -10,7 +10,6 @@ Page({
 
     userOpenid:"",
     userPerInfo:{},//获取成功后，该字典存在name、tel、addressName、addressOpenid四个字段之中的某几个
-    //userRecords:{},
     userManageComOpenid:"",
     comOpenid:"",
 
@@ -51,15 +50,20 @@ Page({
       data: {},
       success: res => {
         this.data.userOpenid = res.result.openid;
-        db.collection('User').where({
-          _openid: this.data.userOpenid
-        }).get().then(res => {
-          this.setData({
-            userPerInfo: res.data[0].perInfo,
-            //userRecords: res.data[0].records,
-            userManageComOpenid: res.data[0].manageComOpenid
-          })
-          app.globalData.userName = res.data[0].perInfo.userName
+        wx.cloud.callFunction({
+          name: 'getInfo',
+          data: {
+            userOpenid: res.result.openid
+          },
+          success: res => {
+            this.setData({
+              userPerInfo: res.result.userPerInfo,
+              userManageComOpenid: res.result.userManageComOpenid
+            })
+          },
+          fail: err => {
+            console.error('【index】【云函数获取个人信息】【失败】', err)
+          }
         })
       },
       fail: err => {
@@ -76,35 +80,6 @@ Page({
       hasUserInfo: true
     })
   },
-// <<<<<<< Updated upstream
-//   JumpToInfo: function(e){
-//     wx.navigateTo({
-//       url: '../user/information/information'
-//     })
-//   },
-//   JumpToHistory: function(e){
-//     console.log(e)
-//     wx.navigateTo({
-//       url: '../user/record/record'
-//     })
-//   },
-//   // 判断该跳转到register还是manager
-//   JudgeRegister: function(e){
-    
-//   },
-//   JumpToRegister: function(e){
-//     wx.navigateTo({
-//       url: '../user/record/record',
-//     })
-//   },
-//   JumpToManager: function(e){
-//     wx.redirectTo({
-//       url: '../manager/manager',
-//     })
-//   }
-// =======
-
-
   
 
    // 判断该用户是否有填写个人基本信息（不包括住户）
@@ -131,6 +106,12 @@ Page({
       jumpToRegisterSuccess();
   },
 
+  //跳转基本信息填写界面
+  jumpToInformationPage: function(){
+    wx.navigateTo({
+      url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+    })
+  },
 
    // 跳转外来人员填写界面
   jumpToOutsiderFormPage : function(){
