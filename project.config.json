@@ -102,6 +102,13 @@
 					"id": -1,
 					"name": "pages/manager/statistics/statistics",
 					"pathName": "pages/manager/statistics/statistics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/manager/export/export",
+					"pathName": "pages/manager/export/export",
 					"scene": null
 				}
 			]

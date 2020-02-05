@@ -1,2 +1,33 @@
 <!--pages/manager/export/export.wxml-->
-<text>pages/manager/export/export.wxml</text>
+<!--文件下载-->
+<view class="col first">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">文件下载</view>
+  </view>
+  <view class="center">
+    <view class='title-bottom'>单击下方发送按钮即可生成Excel文件并进行下载</view>
+  </view>
+</view>
+<view class='center'>
+  <view class='confirm'>确认</view>
+</view>
+<!--邮件发送-->
+<view class="col second">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">邮件发送</view>
+  </view>
+  <view class="center">
+    <view class='title-bottom'>将生成的Excel文件发送至你的邮箱中，请在几分钟后查看你的邮箱。</view>
+  </view>
+</view>
+<form bindsubmit="submitForm">
+  <view class='col box'>
+    <label>真实姓名：</label>
+    <input type="text" name='name' placeholder="请输入姓名"></input>
+    <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">发送</view>
+</form>
+

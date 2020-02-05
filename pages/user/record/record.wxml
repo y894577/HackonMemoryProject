@@ -8,6 +8,7 @@
     <view class='title-bottom'>您的所有记录都会被严格保密，只有你去过的小区能获得相应的到访信息</view>
   </view>
 </view>
+<!--到访记录列表-->
 <view class="list" wx:for='{{newList}}' wx:key='newList{{index}}' wx:for-item='new'>
   <view class="row box">
     <view class="list-item">{{new.adress}}</view>

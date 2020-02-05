@@ -1,18 +1,59 @@
 // pages/manager/statistics/statistics.js
+var util=require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[
+      {
+        number:251,
+        text:'总人数'
+      },
+      {
+        number:251,
+        text:'住户人数'
+      },
+      {
+        number:251,
+        text:'访客人数'
+      },
+    ],
+    information:[
+      {
+        name:'李桂明',
+        time:'2020/02/05 13:35',
+        track:'E座606',
+        phone:'1346217672',
+      },
+      {
+        name:'李桂明',
+        time:'2020/02/05 13:35',
+        track:'E座606',
+        phone:'1346217672',
+      },
+      {
+        name:'李桂明',
+        time:'2020/02/05 13:35',
+        track:'E座606',
+        phone:'1346217672',
+      }
+    ]
+    
   },
-
+  dateChange:function(e){
+    let value=e.detail.value;
+    this.setData({date:value})
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var TIME = util.formatSmallTime(new Date());
+    this.setData({
+      date: TIME,
+    });
   },
 
   /**
@@ -26,7 +67,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var TIME = util.formatSmallTime(new Date());
+    this.setData({
+      date: TIME,
+    });
   },
 
   /**

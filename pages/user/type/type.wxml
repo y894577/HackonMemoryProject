@@ -6,6 +6,7 @@
   </view>
   <view class='title-bottom'>只需一次填写，即可实现快速无接触式到访登记</view>
 </view>
+<!--选择框-->
 <view class="container">
   <view class="row box">
     <image src="/pages/image/zhuhu.png" class="zhuhu"></image>

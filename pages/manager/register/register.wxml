@@ -8,6 +8,7 @@
     <view class='title-bottom'>建立社区，对于到访人员进行统计，若要加入已有社区，请点击页面底部的加入已有社区按钮。</view>
   </view>
 </view>
+<!--信息填写-->
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>社区名称：</label>

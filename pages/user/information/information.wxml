@@ -6,6 +6,7 @@
   </view>
   <view class='title-bottom'>只需一次填写，即可实现快速无接触式到访登记</view>
 </view>
+<!--信息填写-->
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>真实姓名：</label>

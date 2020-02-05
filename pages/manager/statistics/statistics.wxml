@@ -1,4 +1,27 @@
 <!--pages/manager/statistics/statistics.wxml-->
 <view class="container">
-  <view class="head"></view>
+  <view class="head row">
+    <view class='col box' wx:for='{{list}}' wx:key='list{{index}}'>
+      <text class="bigtext">{{item.number}}</text>
+      <text class="smalltext">{{item.text}}</text>
+    </view>
+  </view>
+  <!--时间栏-->
+  <view class="row line">
+    <picker name='date' mode='date' bindchange="dateChange" value='{{date}}'>
+      <view class="time">{{date}}</view>
+    </picker>
+    <image src='/pages/image/arrow.png' class="arrow"></image>
+  </view>
+  <!--路径-->
+  <view class='col frame' wx:for='{{information}}' wx:key='information{{index}}'>
+    <view class='row first'>
+      <text class='name'>{{item.name}}</text>
+      <text class='usertime'>{{item.time}}</text>
+    </view>
+    <view class='row'>
+      <text class='track'>前往：{{item.track}}</text>
+      <text class='phone'>{{item.phone}}</text>
+    </view>
+  </view>
 </view>
