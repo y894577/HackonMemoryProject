@@ -1,0 +1,17 @@
+<!--pages/manager/joinCom/joinCom.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text">加入已有社区</view>
+  </view>
+  <view class='title-bottom'>输入创建者屏幕上的社区ID加入已有社区</view>
+</view>
+<!--输入社区ID-->
+<form bindsubmit="submitForm">
+  <view class='col box'>
+    <label>社区ID：</label>
+    <input type="number" name='ComID' placeholder="请输入社区ID"></input>
+    <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">确认</view>
+</form>

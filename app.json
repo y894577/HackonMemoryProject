@@ -9,7 +9,8 @@
     "pages/user/record/record",
     "pages/manager/register/register",
     "pages/manager/statistics/statistics",
-    "pages/manager/export/export"
+    "pages/manager/export/export",
+    "pages/manager/joinCom/joinCom"
   ],
   "window": {
     "backgroundTextStyle": "light",

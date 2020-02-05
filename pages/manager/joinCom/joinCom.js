@@ -1,4 +1,4 @@
-// pages/manager/export/export.js
+// pages/manager/joinCom/joinCom.js
 Page({
 
   /**
@@ -7,22 +7,7 @@ Page({
   data: {
 
   },
-  // 邮箱验证部分  
-  inputemail: function (e) {
-    let email = e.detail.value
-    let checkedNum = this.checkEmail(email)
-  },
-  checkEmail: function (email) {
-    let str = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
-    if (str.test(email)) {
-      return true
-    } else {
-    wx.showToast({
-      title: '请填写正确的邮箱号',
-    })
-    return false
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */

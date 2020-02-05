@@ -24,8 +24,8 @@
 </view>
 <form bindsubmit="submitForm">
   <view class='col box'>
-    <label>真实姓名：</label>
-    <input type="text" name='name' placeholder="请输入姓名"></input>
+    <label>邮箱地址：</label>
+    <input type="text" name='email' placeholder="请输入邮箱地址" bindchange="inputemail"></input>
     <view class="line"></view>
   </view>
   <view class="confirm" form-type="submit">发送</view>
