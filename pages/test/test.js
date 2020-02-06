@@ -71,7 +71,7 @@ Page({
     wx.cloud.callFunction({
       name: 'getRecord',
       data: {
-        isUser:true
+        isUser:false
       },
       success: function (res) {
         console.log(res.result)
