@@ -7,7 +7,7 @@ form{
   margin-top: 40rpx;
 }
 label{
-  width: 120rpx;
+  width: 100%;
 	height: 36rpx;
 	left: 56rpx;
 	top: 366rpx;
@@ -93,9 +93,39 @@ input{
 	line-height: 150%;
 	box-shadow: 0rpx 24rpx 38rpx 0rpx rgba(0, 0, 0, 0.22857142857142862);
   text-align: center;
-  margin-top: 200rpx;
+  margin-top: 100rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+radio{
+	width: 38rpx;
+	margin-right: 10rpx;
+	margin-top:12rpx ;
+}
+radio .wx-radio-input{
+	border-radius: 50%; 
+	width: 35rpx;
+	height: 35rpx;
+}
+radio .wx-radio-input.wx-radio-input-checked::before{
+	border-radius: 50%;
+	width: 55rpx; 
+	height: 55rpx; 
+	line-height: 55rpx;
+	text-align: center;
+	font-size: 32.5rpx; /* 对勾大小 32.5rpx */
+	color:#fff; 
+	background: rgba(24, 144, 255, 1);
+	border-color:rgba(24, 144, 255, 1);
+}
+.radiotext{
+	width: 100%;
+	height: 60rpx;
+	color: rgba(80, 80, 80, 1);
+	font-size: 32rpx;
+	line-height: 150%;
+	text-align: left;
+	margin-right: 35rpx;
 }
