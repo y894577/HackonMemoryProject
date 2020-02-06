@@ -1,9 +1,0 @@
-<!--pages/manager/manager.wxml-->
-<view class="container">
-  <image src='{{code}}' class='code'></image>
-  <text class='item'>{{communityName}}</text>
-  <text class='id'>ID：{{id}}</text>
-  <view class='data' bindtap="JumpToStatist">查看数据</view>
-  <view class='data' bindtap="ExportData">导出数据</view>
-  <view class='exit' bindtap="ReturnComRegister">退出社区</view>
-</view>
