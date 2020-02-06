@@ -71,7 +71,7 @@ Page({
     wx.cloud.callFunction({
       name: 'getExcel',
       data: {
-        isUser:false
+        isUser:true
       },
       success: function (res) {
         console.log(res.result)

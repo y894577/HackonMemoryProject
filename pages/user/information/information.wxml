@@ -18,14 +18,5 @@
     <input type="number" name='phonenumber' placeholder="请输入手机号码" bindinput='blurPhone'></input>
      <view class="line"></view>
   </view>
-  <view class='col box'>
-    <label>近期家里是否有人去过武汉：</label>
-    <radio-group class="item-right radio-group" bindchange="changeSex">          
-      <label class="radio" wx:for="{{items}}">               
-        <radio value="{{item.name}}" checked="{{item.checked}}"/>
-        <text class="radiotext">{{item.name}}</text>          
-      </label>     
-    </radio-group>
-  </view>
-  <button class="confirm" form-type="submit">确认</button>
+  <view class="confirm" form-type="submit">确认</view>
 </form>

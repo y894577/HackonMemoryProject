@@ -8,7 +8,9 @@ Page({
     ComID: "",
     ComName: '',
     LeaderName: '',
-    LeaderPhone: ''
+    LeaderPhone: '',
+    QRcode: '',
+    _id: ''
   },
 
   /**
@@ -96,12 +98,27 @@ Page({
       ComID: result
     })
   },
+  CreateQRcode: function(){
+    var that = this;
+    wx.cloud.callFunction({
+      name: getWxacode,
+      success: function(res){
+
+      },
+      fail: function(err){
+        console.log(err)
+      }
+    })
+  },
   UpdateInfo: function(){
     var that = this;
     this.RandomID();
     // 上传到数据库
     // 根据上传的信息上传manager
     const db = wx.cloud.database();
+    db.collection('User').where({
+      _id: '',
+    })
     db.collection('Community').add({
       data: {
         comID: that.data.ComID,
@@ -110,6 +127,8 @@ Page({
         comManageTel: that.data.LeaderPhone,
         comQRcode: '',
         record: [],
+        resident: 0,
+        visitor: 0,
       },
     }).then(res => {
       console.log(res)
@@ -118,7 +137,6 @@ Page({
       })
       this.JumpToManager();
     })
-
   },
   JumpToManager: function(){
     wx.redirectTo({

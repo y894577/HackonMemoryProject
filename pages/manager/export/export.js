@@ -41,6 +41,7 @@ Page({
   // 邮箱验证部分  
   inputemail: function (e) {
     let email = e.detail.value
+<<<<<<< HEAD
     let checkedNum=this.checkEmail(email)
     if(checkedNum){
       wx.cloud.callFunction({
@@ -59,6 +60,9 @@ Page({
         }
       })
     }
+=======
+    let checkedNum = this.checkEmail(email)
+>>>>>>> fix
   },
   checkEmail: function (email) {
     let str = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
