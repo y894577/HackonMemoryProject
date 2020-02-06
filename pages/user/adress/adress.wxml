@@ -13,14 +13,14 @@
   <!--住户登记-->
   <view class='col box' wx:if="{{flag}}">
     <label>您所住的单元：</label>
-    <input type="text" name='livingUnit' placeholder="请输入详细地址"></input>
+    <input type="text" name='unit' placeholder="请输入详细地址"></input>
     <view class="line"></view>
   </view>
   <!--访客登记-->
   <view class='col box' wx:else>
     <label>前往单元：</label>
-    <input type="text" name='goingUnit' placeholder="请输入详细地址"></input>
+    <input type="text" name='unit' placeholder="请输入详细地址"></input>
     <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit">确认</view>
+  <button class="confirm" form-type="submit">确认</button>
 </form>

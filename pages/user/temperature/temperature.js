@@ -7,7 +7,9 @@ Page({
   data: {
 
   },
-
+  submitForm: function(e){
+    console.log('temperature:',e.detail.value.temperature)
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -27,5 +27,5 @@
       </label>     
     </radio-group>
   </view>
-  <view class="confirm" form-type="submit">确认</view>
+  <button class="confirm" form-type="submit">确认</button>
 </form>

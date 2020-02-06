@@ -72,6 +72,11 @@ Page({
     })
 
   },
+  JumpToRegister:function(){
+    wx.navigateTo({
+      url: '/pages/manager/manager'
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
