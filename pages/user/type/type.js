@@ -12,20 +12,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
-      userName: options.userName,
+      userOpenid: options.userOpenid,
       comOpenid: options.comOpenid
     });
   },
 
   jumpToAdressPage: function(event){
-    if (event.cureentTarget.dataset.flag == "local")
+    if (event.currentTarget.dataset.flag == "local")
       wx.navigateTo({
-        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=true'
+        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=local'
       })
     else 
       wx.navigateTo({
-        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=false'
+        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=outsider'
       })
   }
 

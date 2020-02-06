@@ -6,6 +6,8 @@ Page({
    */
   data: {
     ajxtrue: false,
+    name: "dd",
+    tel: ""
    },
    
   onLoad: function (options) {
@@ -25,10 +27,7 @@ Page({
         tel: this.data.tel
       },
       success: res => {
-        this.setData({
-          userPerInfo: res.result.userPerInfo,
-          userManageComOpenid: res.result.userManageComOpenid
-        })
+
       },
       fail: err => {
         console.error('【index】【云函数上传个人基本信息】【失败】', err)

@@ -1,10 +1,12 @@
 <!--index.wxml-->
+<view wx:if="{{show}}">
 <view class="container">
   <view class="sweep">
     <view class="sweepmiddle">
-    <image src="/pages/image/saoma.png" mode="widthFix" bindtouchend="jumpToNextPage"></image>
+    <image src="/pages/image/saoma.png" mode="widthFix" bindtouchend="scanQRCode"></image>
     </view>
   </view>
-  <view class="historical-record" bindtap="JumpToHistory">历史记录</view>
-  <view class='text' bindtap="JumpToRegister">我是管理人员</view>
+  <view class="historical-record" bindtap="jumpToHistoryPage">历史记录</view>
+  <view class='text' bindtap="jumpToRegisterPage">我是管理人员</view>
+</view>
 </view>

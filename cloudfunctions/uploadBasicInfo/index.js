@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
     data: {
       perInfo: {
         name: event.name,
-        tel: evnet.tel
+        tel: event.tel
       }
     }
   })

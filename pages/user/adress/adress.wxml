@@ -23,4 +23,5 @@
     <view class="line"></view>
   </view>
   <view class="confirm" form-type="submit">确认</view>
+  <button form-type="submit">comfirm</button>
 </form>

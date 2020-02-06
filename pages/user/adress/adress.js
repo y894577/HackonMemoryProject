@@ -5,16 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    addressName: ""
   },
   /**
     * 生命周期函数--监听页面加载
     */
   onLoad: function (options) {           //跳转到这个界面时传一个flag的参数给它，它就可以根据参数判断要显示哪个界面
     this.setData({
-      flag: options.flag,
+      flag: ((options.flag=="local")?true:false),
       userOpenid: options.userOpenid,
-      comOpenid: options.comOpenid
+      comOpenid: options.comOpenid,
     })
   },
 
@@ -26,22 +26,20 @@ Page({
         userOpenid: this.data.userOpenid,
         addressName: this.data.addressName,
         comOpenid: this.data.comOpenid,
-        time: new Date()
+        time: new Date(),
+        flag: this.data.flag
       },
       success: res => {
-        this.setData({
-          userPerInfo: res.result.userPerInfo,
-          userManageComOpenid: res.result.userManageComOpenid
+        wx.navigateTo({
+          url: '/pages/user/successful/successful?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
         })
       },
       fail: err => {
-        console.error('【index】【云函数提交地址】【失败】', err)
+        console.error('【adress】【云函数】【提交地址失败】', err)
       }
     })
 
-    wx.navigateTo({
-      url: '/pages/successful/successful/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
-    })
+    
   }
   
 })

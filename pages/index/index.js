@@ -7,15 +7,22 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    show:false,
 
     userOpenid:"",
     userPerInfo:{},//获取成功后，该字典存在name、tel、addressName、addressOpenid四个字段之中的某几个
     userManageComOpenid:"",
-    comOpenid:"",
-
+    comOpenid:"ebb6dcb3-bff4-4672-83bb-4bf9d8d60b53",
   },
   //事件处理函数
-  onLoad: function () {
+  onLoad: function (event) {
+    console.log(event)
+    console.log(decodeURIComponent(event.scene))
+    if(!event.comOpenid) 
+      this.setData({
+        show:true
+      })
+    
     if (app.globalData.userInfo) {
       console.log(app.globalData.userInfo)
       this.setData({
@@ -60,6 +67,11 @@ Page({
               userPerInfo: res.result.userPerInfo,
               userManageComOpenid: res.result.userManageComOpenid
             })
+            console.log(res)
+
+            if(!this.data.show){
+              this.jumpToNextPage();
+            }
           },
           fail: err => {
             console.error('【index】【云函数获取个人信息】【失败】', err)
@@ -72,6 +84,16 @@ Page({
     })
 
   },
+  scanQRCode:function(){
+    wx.scanCode({
+      onlyFromCamera: true,
+      scanType: "QR_CODE",
+      success(res) {
+        console.log(res)
+      }
+    })
+  },
+  
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -84,10 +106,11 @@ Page({
 
    // 判断该用户是否有填写个人基本信息（不包括住户）
   isFistTime : function(){
-    if(this.data.userPerInfo.userName)
-      return true;
-    else
+    console.log(this.data)
+    if(this.data.userPerInfo.name)
       return false;
+    else
+      return true;
   },
 
   // 判断该用户是否有填写自己的住户
@@ -99,17 +122,39 @@ Page({
   },
 
   //判断进入小区是否为自己小区
-  isUserOwnAddress : function(address){
-    if(address == this.data.userPerInfo.addressOpenid)
-      jumpToOutsiderForm();
+  isUserOwnAddress : function(comOpenid){
+    if(comOpenid == this.data.userPerInfo.addressOpenid)
+      return true;
     else
-      jumpToRegisterSuccess();
+      return false;
+  },
+
+//跳转个人历史记录界面
+  jumpToHistoryPage: function () {
+    wx.navigateTo({
+      url: '/pages/user/record/record?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+    })
+  },
+
+//跳转管理人员界面
+  jumpToRegisterPage: function () {
+    console.log("fdsfdf")
+    if(this.data.userPerInfo.userManageComOpenid){
+       wx.navigateTo({
+         url: '/pages/manager/manager?userOpenid=' + this.data.userOpenid + '&manageComOpenid=' + this.data.comOpenid
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: '/pages/manager/register/register?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+      })
+    }
   },
 
   //跳转基本信息填写界面
   jumpToInformationPage: function(){
     wx.navigateTo({
-      url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+      url: '/pages/user/information/information?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
     })
   },
 
@@ -122,15 +167,29 @@ Page({
 
    //跳转到登记成功界面
   jumpToRegisterSuccess : function(){
-    var record = {
-      name: this.data.userPerInfo.name,
-      tel: this.data.userPerInfo.tel,
-      destination: this.data.userPerInfo.addressName,
-      time: new Date(),
-    }
-    wx.navigateTo({
-      url: '/pages/user/successful/successful?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+
+    wx.cloud.callFunction({
+      name: 'uploadRecord',
+      data: {
+        tel: this.data.userPerInfo.tel,
+        time: new Date(),
+        destination: this.data.userPerInfo.addressName,
+        name: this.data.userPerInfo.name,
+        comOpenid: this.data.comOpenid,
+        userOpenid: this.data.userOpenid,
+        flag: "3"
+      },
+      success: res => {
+        wx.navigateTo({
+          url: '/pages/user/successful/successful?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+        })
+      },
+      fail: err => {
+        console.error('【adress】【云函数】【提交地址失败】', err)
+      }
     })
+
+    
   },
 
 
@@ -144,14 +203,23 @@ Page({
 
    //扫码成功后跳转页面选择
   jumpToNextPage:function(){
-    if(this.isFistTime())
+    if(this.isFistTime()){
+      console.log("【index】【用户为新用户未填基本信息，跳转基本信息填写界面】")
       this.jumpToInformationPage();
-    else if(this.isHasRecordAddress)
-          if(this.isUserOwnAddress)
-           this.jumpToRegisterSuccess();
-          else
-           this.jumpToOutsiderFormPage();
-    else
-      this.jumpToTypePage();
+    }
+    else if(this.isHasRecordAddress()){
+      if(this.isUserOwnAddress(this.data.comOpenid)){
+        console.log("【index】【用户已填基本信息和自己住址，扫码小区为自己小区，跳转登记成功界面】")
+        this.jumpToRegisterSuccess();
+      }
+      else{
+        console.log("【index】【用户已填基本信息和自己住址，扫码别的小区，跳转目的地填写界面】")
+        this.jumpToOutsiderFormPage();
+      }
+    }
+    else{
+      console.log("【index】【用户已填基本信息但未填自己住址，跳转选择小区界面】")
+        this.jumpToTypePage();
+    }
    }
 })
