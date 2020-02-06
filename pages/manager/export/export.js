@@ -11,6 +11,20 @@ Page({
   inputemail: function (e) {
     let email = e.detail.value
     let checkedNum = this.checkEmail(email)
+    if(checkedNum){
+      wx.cloud.callFunction({
+        name:"sendEmail",
+        data:{
+            email:e.detail.value
+        },
+        success(res){
+          console.log("发送成功",res)
+        },
+        fail(res){
+          console.log("发送失败",res)
+        }
+      })
+    }
   },
   checkEmail: function (email) {
     let str = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/

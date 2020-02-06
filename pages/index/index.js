@@ -84,6 +84,11 @@ Page({
     })
 
   },
+  JumpToRegister:function(){
+    wx.navigateTo({
+      url: '/pages/manager/manager'
+    })
+  },
   scanQRCode:function(){
     wx.scanCode({
       onlyFromCamera: true,
