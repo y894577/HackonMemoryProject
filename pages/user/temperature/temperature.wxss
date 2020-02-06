@@ -34,7 +34,8 @@ input{
 	color: rgba(80, 80, 80, 1);
 	font-size: 28rpx;
 	line-height: 150%;
-  text-align: center;
+	text-align: left;
+	margin-left: 65rpx;
 }
 .center{
   display: flex;
