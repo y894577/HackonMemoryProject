@@ -25,6 +25,6 @@
     <input type="number"  name='phonenumber' placeholder="请输入电话号码" bindinput='LeaderNameInput'></input>
      <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit" bindtap="JumpToManager">确认</view>
+  <view class="confirm" form-type="submit" bindtap="UpdateInfo">确认</view>
   <view class="had" bindtap="JoinToCom">加入已有社区</view>
 </form>

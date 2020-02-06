@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ComID: "",
     ComName: '',
     LeaderName: '',
     LeaderPhone: ''
@@ -67,42 +68,59 @@ Page({
   },
   // 获取input框的内容
   ComNameInput: function(e){
-    this.setData({
+    var that = this;
+    that.setData({
       ComName: e.detail.value
-    })
+    });
   },
   LeaderNameInput: function (e) {
-    this.setData({
+    var that = this;
+    that.setData({
       LeaderName: e.detail.value
     })
   },
   LeaderPhoneInput: function (e) {
-    this.setData({
+    var that = this;
+    that.setData({
       LeaderPhone: e.detail.value
+    })
+  },
+  //加密生成id函数
+  RandomID: function () { // 生成n位长度的字符串
+    var str = "abcdefghijklmnopqrstuvwxyz0123456789"; // 可以作为常量放到random外面
+    var result = "";
+    for (var i = 0; i < 8; i++) {
+      result += str[parseInt(Math.random() * str.length)];
+    }
+    this.setData({
+      ComID: result
     })
   },
   UpdateInfo: function(){
     var that = this;
     // 上传到数据库
     // 根据上传的信息上传manager
+    // const cloud = require('wx-server-sdk')
+    // cloud.init()
     const db = wx.cloud.database();
-    db.collection('community').add({
+    db.collection('Community').add({
       data: {
         comName: that.data.ComName,
-        comManagerName: that.data.LeaderName,
-        comManagerTel: that.data.LeaderPhone
+        comManageName: that.data.LeaderName,
+        comManageTel: that.data.LeaderPhone
       },
       success: function (res) {
-        console.log(res)
-        JumpToManager();
+        console.log(res.data)
       },
       fail: console.error
-    })
+    }),
+    this.RandomID();
+    this.JumpToManager();
   },
   JumpToManager: function(){
     wx.redirectTo({
       // 需要传参，暂时没写
-      url: '../manager',
+      url: '../manager?comID=' + this.data.ComID,
     })
   },
   JoinToCom: function(){

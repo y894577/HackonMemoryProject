@@ -12,7 +12,7 @@ Page({
     */
   onLoad: function (options) {           //跳转到这个界面时传一个flag的参数给它，它就可以根据参数判断要显示哪个界面
     this.setData({
-      flag: options.flag=='1'?true:false,
+      flag: options.flag,
       userOpenid: options.userOpenid,
       comOpenid: options.comOpenid
     })
@@ -20,7 +20,6 @@ Page({
 
   submitForm: function(){
     //判空
-
     wx.cloud.callFunction({
       name: 'submitAddress',
       data: {
@@ -41,7 +40,7 @@ Page({
     })
 
     wx.navigateTo({
-      url: '/pages/user/successful/successful'
+      url: '/pages/successful/successful/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
     })
   }
   

@@ -85,9 +85,9 @@ Page({
    // 判断该用户是否有填写个人基本信息（不包括住户）
   isFistTime : function(){
     if(this.data.userPerInfo.userName)
-      return false;
-    else
       return true;
+    else
+      return false;
   },
 
   // 判断该用户是否有填写自己的住户
@@ -101,15 +101,15 @@ Page({
   //判断进入小区是否为自己小区
   isUserOwnAddress : function(address){
     if(address == this.data.userPerInfo.addressOpenid)
-      return true;
+      jumpToOutsiderForm();
     else
-      return false;
+      jumpToRegisterSuccess();
   },
 
   //跳转基本信息填写界面
   jumpToInformationPage: function(){
     wx.navigateTo({
-      url: '/pages/user/information/information?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+      url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
     })
   },
 
@@ -138,39 +138,6 @@ Page({
   jumpToTypePage: function () {
     wx.navigateTo({
       url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
-    })
-  },
-
-  //跳转到历史记录界面
-  jumpToRecordPage: function(){
-    wx.navigateTo({
-      url: '/pages/user/record/record?userOpenid=' + this.data.userOpenid
-    })
-  },
-
-  //跳转到管理注册界面或管理界面
-  jumpToManageRelatePage: function(){
-    if(this.data.userManageComOpenid){
-      wx.navigateTo({
-        url: '/pages/manager/manager/?userOpenid=' + this.data.userOpenid
-      })
-    }
-    else{
-      wx.navigateTo({
-        url: '/pages/regisetr/register?userOpenid=' + this.data.userOpenid
-      })
-    }
-  },
-
-
-  //扫码
-  scanQRCode(){
-    wx.scanCode({
-      onlyFromCamera: true,
-      scanType: 'qrCode',
-      success(res) {
-        this.data.comOpenid = res.result.comOpenid
-      }
     })
   },
 

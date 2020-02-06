@@ -16,7 +16,7 @@ Page({
   },
 
   //提交个人基本信息
-  submitForm: function(){
+  submit: function(){
     wx.cloud.callFunction({
       name: 'uploadBasicInfo',
       data: {

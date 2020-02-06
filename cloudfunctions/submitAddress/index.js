@@ -6,7 +6,7 @@ const db = cloud.database()
 const _ = db.command
 exports.main = async (event, context) => {
   var flag = event.flag
-  var userInfo =  await db.collection('User').where({
+  var userInfo =  await db.collection('user').where({
     _openid: event.userOpenid // 填入当前用户 openid
   }).get()
   if(flag){               //个人地址记录

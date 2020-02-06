@@ -14,7 +14,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      id: options.comID,
+    })
+    console.log(options.comID)
   },
 
   /**
@@ -65,17 +68,21 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //通过id来获取数据库内容
   JumpToStatistics: function (e) {
+    //需要传参
     wx.navigateTo({
-      url: 'statistics/statistics',
+      url: 'statistics/statistics?comID='+this.data.comID,
     })
   },
   ExportData: function(e){
+    //需要传参
     wx.navigateTo({
-      url: 'export/export',
+      url: 'export/export?comID='+this.data.comID,
     })
   },
   ReturnComRegister: function () {
+    //需要传参
     wx.redirectTo({
       url: 'register/register',
     })
