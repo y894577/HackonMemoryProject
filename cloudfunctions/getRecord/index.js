@@ -6,7 +6,6 @@ cloud.init()
 const db = cloud.database()
 const User = db.collection('User')
 const Records = db.collection('Records')
-const Community = db.collection('Community')
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -22,7 +21,7 @@ exports.main = async (event, context) => {
     }).get()
     var records = userInfo.data[0].records
     for (id in records) {
-      r = await Records.doc(records[id]).get()
+      r = await Records.doc('f79768aa-ddf2-4ec5-91f2-20bff1a56f54').get()
       recordsList.push(r.data)
     }
   } else {
@@ -30,16 +29,11 @@ exports.main = async (event, context) => {
     var userInfo = await db.collection('User').where({
       _openid: event.userInfo.openId // 填入当前用户 openid
     }).get()
-    manageComOpenid=userInfo.data[0].manageComOpenid
-    comInfo = await Community.doc(manageComOpenid).get()
-    records=comInfo.data.records
-    for (id in records) {
-      r = await Records.doc(records[id]).get()
-      recordsList.push(r.data)
-    }
+
   }
   return {
     event,
     recordsList,
+    userInfo,
   }
 }

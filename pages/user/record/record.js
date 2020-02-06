@@ -5,27 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    newList:[
-      {
-        adress:'华南师范大学',
-        time:'2020/02/05 13:35',
-      },
-      {
-        adress:'华南师范大学',
-        time:'2020/02/05 13:35',
-      },
-      {
-        adress:'华南师范大学',
-        time:'2020/02/05 13:35',
-      }
-    ]
+    newList: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    wx.cloud.callFunction({
+      // 需要调用的云函数名
+      name: 'getRecord',
+      // 传给云函数的参数
+      data: {
+        isUser: true
+      },
+      success: function (res) {
+        console.log(res.result)
+        that.setData({
+          newList: res.result.recordsList
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+      }
+    })
   },
 
   /**

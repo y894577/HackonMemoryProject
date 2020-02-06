@@ -16,12 +16,12 @@
   <!--路径-->
   <view class='col frame' wx:for='{{information}}' wx:key='information{{index}}'>
     <view class='row first'>
-      <text class='name'>{{item.name}}</text>
-      <text class='usertime'>{{item.time}}</text>
+      <text class='name'>{{item.passerName}}</text>
+      <text class='usertime'>{{item.passTime}}</text>
     </view>
     <view class='row'>
-      <text class='track'>前往：{{item.track}}</text>
-      <text class='phone'>{{item.phone}}</text>
+      <text class='track'>前往：{{item.passerDestination}}</text>
+      <text class='phone'>{{item.passTel}}</text>
     </view>
   </view>
 </view>

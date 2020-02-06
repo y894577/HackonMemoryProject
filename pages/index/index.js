@@ -43,7 +43,7 @@ Page({
         }
       })
     }
-    
+
     //获取用户openid同时其他基本信息
     wx.cloud.callFunction({
       name: 'login',
@@ -71,11 +71,6 @@ Page({
       }
     })
 
-  },
-  JumpToRegister:function(){
-    wx.navigateTo({
-      url: '/pages/manager/manager'
-    })
   },
   getUserInfo: function(e) {
     console.log(e)

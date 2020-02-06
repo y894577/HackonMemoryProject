@@ -18,13 +18,13 @@ Page({
     })
   },
 
-  submitForm: function(e){
+  submitForm: function(){
     //判空
     wx.cloud.callFunction({
       name: 'submitAddress',
       data: {
         userOpenid: this.data.userOpenid,
-        addressName: e.detail.value.unit,
+        addressName: this.data.addressName,
         comOpenid: this.data.comOpenid,
         time: new Date()
       },

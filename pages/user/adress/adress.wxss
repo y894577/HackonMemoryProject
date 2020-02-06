@@ -99,7 +99,7 @@ input{
 	line-height: 150%;
 	box-shadow: 0rpx 24rpx 38rpx 0rpx rgba(0, 0, 0, 0.22857142857142862);
   text-align: center;
-  margin-top: 135rpx;
+  margin-top: 330rpx;
   display: flex;
   flex-direction: row;
   align-items: center;

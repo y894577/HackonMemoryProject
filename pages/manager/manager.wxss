@@ -46,15 +46,17 @@
   margin-top:35rpx ;
 }
 .exit{
-  width: 640rpx;
-	height: 80rpx;
+  width: 320px;
+	height: 40px;
+	left: 27px;
+	top: 550px;
 	color: rgba(24, 144, 255, 1);
 	background-color: rgba(255, 255, 255, 1);
-	border-radius: 16rpx;
-	font-size: 32rpx;
+	border-radius: 8px;
+	font-size: 16px;
 	line-height: 150%;
-	border: rgba(24, 144, 255, 1) solid 2rpx;
-	box-shadow: 0rpx 24rpx 38rpx 0rpx rgba(0, 0, 0, 0.22857142857142862);
+	border: rgba(24, 144, 255, 1) solid 1px;
+	box-shadow: 0px 12px 19px 0px rgba(0, 0, 0, 0.22857142857142862);
   text-align: center;
   display: flex;
   flex-direction: row;

@@ -7,7 +7,8 @@ Page({
   data: {
     openid: '',
     ComID: '',
-    id: ''
+    id: '',
+    user_managecomid: ''
   },
 
   /**
@@ -74,29 +75,49 @@ Page({
       ComID: e.detail.value
     });
   },
+  SearchComID: function(){
+    var that = this;
+    //查找数据库是否有这个id
+    const db = wx.cloud.database();
+    db.collection('Community').where({
+      comID: that.data.ComID
+    }).get({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          user_managecomid: res.data[0]._id
+        })
+        that.JumpToManager();
+      },
+      fail: console.error
+    })
+  },
   JumpToManager: function(){
     var that = this;
     //查找数据库是否有这个id
     const db = wx.cloud.database();
+    //再查找user
     db.collection('User').where({
+      //用户的openid查找user内的值
       _openid: that.data.openid
     }).get({
       success: function (res) {
-        console.log(res.data[0].manageComOpenid)
+        //成功则获取managecomopenid
         that.setData({
           id: res.data[0].manageComOpenid
         }),
         console.log('id=' + that.data.id)
+        //如果为空则将user_managecomid填入
         if (that.data.id == null) {
           db.collection('User').doc('manageComOpenid').update({
             data: {
-              manageComOpenid: 'that.data.ComID'
+              manageComOpenid: that.data.user_managecomid
             }
           })
         }
-        else if (that.data.id == that.data.ComID) {
+        else if (that.data.id == that.data.user_managecomid) {
           wx.redirectTo({
-            url: '../manager',
+            url: '../manager?_id='+that.data.user_managecomid,
           })
         }
         else {

@@ -98,29 +98,32 @@ Page({
   },
   UpdateInfo: function(){
     var that = this;
+    this.RandomID();
     // 上传到数据库
     // 根据上传的信息上传manager
-    // const cloud = require('wx-server-sdk')
-    // cloud.init()
     const db = wx.cloud.database();
     db.collection('Community').add({
       data: {
+        comID: that.data.ComID,
         comName: that.data.ComName,
         comManageName: that.data.LeaderName,
-        comManageTel: that.data.LeaderPhone
+        comManageTel: that.data.LeaderPhone,
+        comQRcode: '',
+        record: [],
       },
-      success: function (res) {
-        console.log(res.data)
-      },
-      fail: console.error
-    }),
-    this.RandomID();
-    this.JumpToManager();
+    }).then(res => {
+      console.log(res)
+      that.setData({
+        _id: res._id
+      })
+      this.JumpToManager();
+    })
+
   },
   JumpToManager: function(){
     wx.redirectTo({
       // 需要传参，暂时没写
-      url: '../manager?comID=' + this.data.ComID,
+      url: '../manager?_id=' + this.data._id,
     })
   },
   JoinToCom: function(){

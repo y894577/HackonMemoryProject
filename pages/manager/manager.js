@@ -6,8 +6,9 @@ Page({
    */
   data: {
     code:'/pages/image/wait.png',
-    communityName:'华南师范大学南海校区',
-    id:'1526271623213',
+    communityName: '',
+    id:'',
+    code: ''
   },
 
   /**
@@ -18,6 +19,31 @@ Page({
       id: options.comID,
     })
     console.log(options.comID)
+
+    //用comid查找数据库
+    var that = this;
+    const db = wx.cloud.database();
+    db.collection('Community').where({
+      _id: options._id
+    }).get({
+      success: function(res){
+        console.log(res.data[0])
+        that.setData({
+          id: res.data[0].comID,
+          communityName: res.data[0].comName,
+          code: res.data[0].comQRcode
+        })
+      },
+      fail: console.log('error')
+    })
+
+    //转换二维码图片
+    wx.cloud.callFunction({
+      name: 'getWxacode',
+      success: function (res) {
+        console.log(res)
+      }
+    })
   },
 
   /**
@@ -82,9 +108,10 @@ Page({
     })
   },
   ReturnComRegister: function () {
-    //需要传参
     wx.redirectTo({
       url: 'register/register',
     })
-  }
+  },
+  // 通过comid来生成二维码
+
 })

@@ -11,8 +11,8 @@
 <!--到访记录列表-->
 <view class="list" wx:for='{{newList}}' wx:key='newList{{index}}' wx:for-item='new'>
   <view class="row box">
-    <view class="list-item">{{new.adress}}</view>
+    <view class="list-item">{{new.passerDestination}}</view>
     
-    <view class="list-time">{{new.time}}</view>
+    <view class="list-time">{{new.passTime}}</view>
   </view>
 </view>

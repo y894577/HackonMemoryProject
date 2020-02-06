@@ -22,7 +22,7 @@
   </view>
   <view class='col box'>
     <label>社区负责人联系方式：</label>
-    <input type="number"  name='phonenumber' placeholder="请输入电话号码" bindinput='LeaderNameInput'></input>
+    <input type="number"  name='phonenumber' placeholder="请输入电话号码" bindinput='LeaderPhoneInput'></input>
      <view class="line"></view>
   </view>
   <view class="confirm" form-type="submit" bindtap="UpdateInfo">确认</view>

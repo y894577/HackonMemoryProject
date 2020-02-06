@@ -80,8 +80,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/user/record/record",
+					"id": 4,
+					"name": "record",
 					"pathName": "pages/user/record/record",
 					"query": "",
 					"scene": null
@@ -101,15 +101,15 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/manager/statistics/statistics",
+					"id": 7,
+					"name": "statistics",
 					"pathName": "pages/manager/statistics/statistics",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "pages/manager/export/export",
+					"id": 8,
+					"name": "export",
 					"pathName": "pages/manager/export/export",
 					"query": "",
 					"scene": null
@@ -119,12 +119,6 @@
 					"name": "joinCom",
 					"pathName": "pages/manager/joinCom/joinCom",
 					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/temperature/temperature",
-					"pathName": "pages/user/temperature/temperature",
 					"scene": null
 				}
 			]

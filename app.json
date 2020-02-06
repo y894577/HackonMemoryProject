@@ -10,8 +10,7 @@
     "pages/manager/register/register",
     "pages/manager/statistics/statistics",
     "pages/manager/export/export",
-    "pages/manager/joinCom/joinCom",
-    "pages/user/temperature/temperature"
+    "pages/manager/joinCom/joinCom"
   ],
   "window": {
     "backgroundTextStyle": "light",
