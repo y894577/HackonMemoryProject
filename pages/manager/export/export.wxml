@@ -10,13 +10,13 @@
   </view>
 </view>
 <view class='center'>
-  <view class='confirm'>确认</view>
+  <button class='confirm' bindtap="fileDownload">确认</button>
 </view>
 <!--邮件发送-->
 <view class="col second">
   <view class="row">
     <view class="blue"></view>
-    <view class="text">邮件发送</view>
+    <view class="text" >邮件发送</view>
   </view>
   <view class="center">
     <view class='title-bottom'>将生成的Excel文件发送至你的邮箱中，请在几分钟后查看你的邮箱。</view>
@@ -28,6 +28,6 @@
     <input type="text" name='email' placeholder="请输入邮箱地址" bindchange="inputemail"></input>
     <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit">发送</view>
+  <button class="confirm" form-type="submit">发送</button>
 </form>
 

@@ -5,12 +5,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
+  fileDownload:function(){
+    wx.cloud.downloadFile({  
+      fileID: 'cloud://hackthon-memory.6861-hackthon-memory-1301216250/test.xlsx',  
+      success: res => {    
+        // get temp file path    
+        console.log(res.tempFilePath)  
+        const tempFilePath = res.tempFilePath
+        wx.saveFile({
+          tempFilePath: tempFilePath,
+          success (res) {
+            const savedFilePath = res.savedFilePath
+            console.log(res.savedFilePath)
+            wx.showToast({
+              title: '文件下载成功',
+              icon: 'success',
+              duration: 2000         
+            })
+          }
+        })
+      },  
+      fail: err => {    
+        // handle error
+        console.log('失败')
+        wx.showToast({
+          title: '文件下载失败',
+        })
+      }
+    })
+  },
+  
+
   // 邮箱验证部分  
   inputemail: function (e) {
     let email = e.detail.value
-    let checkedNum = this.checkEmail(email)
+    let checkedNum=this.checkEmail(email)
     if(checkedNum){
       wx.cloud.callFunction({
         name:"sendEmail",
@@ -18,7 +49,10 @@ Page({
             email:e.detail.value
         },
         success(res){
-          console.log("发送成功",res)
+          console.log("发送成功",res),
+          wx.showToast({
+            title: '发送成功',
+          })
         },
         fail(res){
           console.log("发送失败",res)
