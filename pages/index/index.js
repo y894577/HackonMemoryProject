@@ -43,7 +43,7 @@ Page({
         }
       })
     }
-
+    
     //获取用户openid同时其他基本信息
     wx.cloud.callFunction({
       name: 'login',
