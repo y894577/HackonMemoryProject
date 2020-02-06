@@ -1,0 +1,17 @@
+<!--pages/user/temperature/temperature.wxml-->
+<view class="col title">
+  <view class="row">
+    <view class="blue"></view>
+    <view class="text" >体温登记</view>
+  </view>
+    <view class='title-bottom'>请根据体温测量仪的数据如实填写</view>
+</view>
+<form bindsubmit="submitForm">
+  <view class='col box'>
+    <label>您当前的体温：</label>
+    <input type="number" name='temperature' placeholder="请输入您的体温"></input>
+    <view class="line"></view>
+  </view>
+  <view class="confirm" form-type="submit">确认</view>
+</form>
+
