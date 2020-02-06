@@ -6,6 +6,13 @@ Page({
    */
   data: {
     ajxtrue: false,
+    items:[
+      { name: '是', checked: false},
+      { name: '否', checked: true}
+    ],
+   },
+   changeSex:function(e){
+    console.log('radio-group发生change事件，携带value值为：', e.detail.value)
    },
    
   onLoad: function (options) {
