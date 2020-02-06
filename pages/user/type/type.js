@@ -21,11 +21,13 @@ Page({
   jumpToAdressPage: function(event){
     if (event.cureentTarget.dataset.flag == "local")
       wx.navigateTo({
-        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=true'
+        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid 
+        + '&comOpenid=' + this.data.comOpenid + '&flag=1'
       })
     else 
       wx.navigateTo({
-        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&flag=false'
+        url: '/pages/user/adress/adress?userOpenid=' + this.data.userOpenid 
+        + '&comOpenid=' + this.data.comOpenid + '&flag=0'
       })
   }
 

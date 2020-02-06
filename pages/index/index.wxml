@@ -5,6 +5,6 @@
     <image src="/pages/image/saoma.png" mode="widthFix" bindtouchend="jumpToNextPage"></image>
     </view>
   </view>
-  <view class="historical-record" bindtap="JumpToHistory">历史记录</view>
-  <view class='text' bindtap="JumpToRegister">我是管理人员</view>
+  <view class="historical-record" bindtap="jumpToRecordPage">历史记录</view>
+  <view class='text' bindtap="jumpToManageRelatePage">我是管理人员</view>
 </view>
