@@ -48,32 +48,34 @@ exports.main = async (event, context) => {
 
   var comid = comInfo.data[0]._id
       //添加记录
-  if(event.flag == 1){
-    db.collection('Community').doc(comid).update({
+  if(event.flag == "1"){
+    var result = db.collection('Community').doc(comid).update({
       data: {
         records: _.unshift(res._id),
         resident: _.inc(1)
 
       }
     })
+    console.log("【uploadRecord】【result的信息】", result, res, "【end】")
   }
-  else if(event.flag == 2){
-    db.collection('Community').doc(comid).update({
+  else if(event.flag == "2"){
+    var result = db.collection('Community').doc(comid).update({
       data: {
         records: _.unshift(res._id),
         visitor: _.inc(1)
       }
     })
+    console.log("【uploadRecord】【result的信息】", result, res, "【end】")
   }
   else{
-    db.collection('Community').doc(comid).update({
+    var result = db.collection('Community').doc(comid).update({
       data: {
         records: _.unshift(res._id)
       }
     })
+    console.log("【uploadRecord】【result的信息】", result,res, "【end】")
   }
   
-
-  
+  return res._id
 
 }

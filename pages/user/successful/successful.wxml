@@ -6,5 +6,5 @@
   <view class="bigtext">登记成功</view>
   <view class="name">{{name}}</view>
   <view class="time">{{time}}</view>
-  <view class="confirm" >确认并退出</view>
+  <view class="confirm" bindtouchend="jumpToIndexPage">确认并退出</view>
 </view>

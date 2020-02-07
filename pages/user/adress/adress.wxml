@@ -22,5 +22,5 @@
     <input type="text" name='goingUnit' placeholder="请输入详细地址"></input>
     <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit">确认</view>
+  <button class="confirm" form-type="submit">确认</button>
 </form>

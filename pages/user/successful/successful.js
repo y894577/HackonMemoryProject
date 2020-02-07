@@ -25,8 +25,8 @@ Page({
 
   //上传登记数据
   jumpToIndexPage: function(){
-    wx.navigateTo({
-      url: '/pages/index/index/type'
+    wx.reLaunch({
+      url: '/pages/index/index'
     })
   }
 

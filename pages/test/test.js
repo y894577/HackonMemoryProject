@@ -69,9 +69,9 @@ Page({
     console.log(this.data.string)
     var that=this
     wx.cloud.callFunction({
-      name: 'getExcel',
+      name: 'getRecord',
       data: {
-        isUser:true
+        isUser:false
       },
       success: function (res) {
         console.log(res.result)

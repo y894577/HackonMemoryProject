@@ -97,7 +97,7 @@
 					"id": 6,
 					"name": "manager",
 					"pathName": "pages/manager/manager",
-					"query": "",
+					"query": "comID=",
 					"scene": null
 				},
 				{
@@ -122,10 +122,9 @@
 					"scene": null
 				},
 				{
-					"id": 10,
-					"name": "temperature",
+					"id": -1,
+					"name": "pages/user/temperature/temperature",
 					"pathName": "pages/user/temperature/temperature",
-					"query": "",
 					"scene": null
 				}
 			]
