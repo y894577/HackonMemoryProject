@@ -84,6 +84,11 @@ Page({
     })
 
   },
+  onShow:function(){
+    this.onLoad({
+      id: this.id
+    })
+  },
   scanQRCode:function(){
     var that = this
     wx.scanCode({

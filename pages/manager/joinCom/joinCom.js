@@ -8,7 +8,8 @@ Page({
     openid: '',
     comID: '',
     id: '',
-    user_managecomid: ''
+    user_managecomid: '',
+    manageComOpenid: ''
   },
 
   /**
@@ -84,12 +85,15 @@ Page({
       comID: that.data.comID
     }).get({
       success: function(res) {
+        console.log("acc")
         console.log(res);
         if (res.data.length != 0) {
           that.setData({
-            user_managecomid: res.data[0]._id
+            user_managecomid: res.data[0]._id,
+            manageComOpenid: res.data[0]._openid,
           })
           that.JumpToManager();
+          that.Field();
         } else {
           wx.showToast({
             title: '查找失败',
@@ -115,7 +119,7 @@ Page({
     //再查找user
     db.collection('User').where({
       //用户的openid查找user内的值
-      _openid: that.data.openid
+      _openid: that.data.userOpenid
     }).get({
       success: function(res) {
         //成功则获取managecomopenid
@@ -127,7 +131,7 @@ Page({
         if (that.data.id == null) {
           console.log('ComOpenId为空')
           db.collection('User').where({
-            _openid: that.data.openid
+            _openid: that.data.userOpenid
           }).update({
             data: {
               manageComOpenid: that.data.user_managecomid
@@ -136,10 +140,11 @@ Page({
           wx.redirectTo({
             url: '../manager?manageComOpenid=' + that.data.user_managecomid,
           })
-        } else if (that.data.id == that.data.user_managecomid) {
+          that.Field();
+        } else{
           console.log('ComOpenId不为空')
           db.collection('User').where({
-            _openid: that.data.openid
+            _openid: that.data.userOpenid
           }).update({
             data: {
               manageComOpenid: that.data.user_managecomid
@@ -148,14 +153,7 @@ Page({
           wx.redirectTo({
             url: '../manager?manageComOpenid=' + that.data.user_managecomid,
           })
-        } else {
-          //返回失败信息
-          console.log("查找失败")
-          wx.showToast({
-            title: '查找失败',
-            image: '../../image/close.png',
-            duration: 1800
-          })
+          that.Field();
         }
       },
       fail: function(res) {
@@ -167,6 +165,18 @@ Page({
         })
       }
     })
-
+  },
+  Field: function(){
+    var field = that.data._id; //当前页面选择的内容
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];
+    var prevPage = pages[pages.length - 3]; //获取上一个页面
+    prevPage.setData({ //修改上一个页面的变量
+      userManageComOpenid: that.data.user_managecomid,
+      userOpenid: that.data.userOpenid
+    })
+    wx.navigateBack({
+      url: '../index/index',
+    })
   }
 })

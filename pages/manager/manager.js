@@ -106,6 +106,7 @@ Page({
     })
   },
   ReturnComRegister: function() {
+    var that = this;
     wx.redirectTo({
       url: 'register/register',
     })
