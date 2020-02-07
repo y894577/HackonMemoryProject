@@ -53,6 +53,7 @@ Page({
     let that = this
     let val = e.detail.value
     let ajxtrue = this.data.ajxtrue
+    
     if (ajxtrue == true) {
     //表单提交进行
       wx.cloud.callFunction({

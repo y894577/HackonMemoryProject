@@ -85,8 +85,7 @@ Page({
 
   },
   onShow:function(){
-    this.reload()
-    this.onLoad()
+    this.onLoad({id:""})
   },
   scanQRCode:function(){
     var that = this

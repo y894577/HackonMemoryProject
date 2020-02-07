@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     var TIME = util.formatTime(new Date());
-    var NAME=app.globalData.userName;
+    var NAME=app.globalData.name;
     this.setData({
       time: TIME,
       name:NAME
