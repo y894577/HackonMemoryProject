@@ -85,14 +85,16 @@ Page({
 
   },
   scanQRCode:function(){
+    var that = this
     wx.scanCode({
       onlyFromCamera: true,
       scanType: "QR_CODE",
       success(res) {
         var index = res.path.indexOf("?id=")
-        this.setData({
+        that.setData({
           comOpenid: res.path.substr((index+4))
         })
+        that.jumpToNextPage();
       }
     })
   },
