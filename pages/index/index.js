@@ -12,19 +12,19 @@ Page({
     userOpenid:"",
     userPerInfo:{},//获取成功后，该字典存在name、tel、addressName、addressOpenid四个字段之中的某几个
     userManageComOpenid:"",
-    comOpenid:"ebb6dcb3-bff4-4672-83bb-4bf9d8d60b53",
+    comOpenid:"",
   },
   //事件处理函数
   onLoad: function (event) {
     console.log(event)
-    console.log(decodeURIComponent(event.scene))
-    if(!event.comOpenid) 
+    if(!event.id) 
       this.setData({
-        show:true
+        show: true,
+        comOpenid: event.id
       })
     
     if (app.globalData.userInfo) {
-      console.log(app.globalData.userInfo)
+      //console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -89,7 +89,10 @@ Page({
       onlyFromCamera: true,
       scanType: "QR_CODE",
       success(res) {
-        console.log(res)
+        var index = res.path.indexOf("?id=")
+        this.setData({
+          comOpenid: res.path.substr((index+4))
+        })
       }
     })
   },

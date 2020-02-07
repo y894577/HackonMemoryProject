@@ -19,6 +19,7 @@ Page({
    },
    
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       userOpenid: options.userOpenid,
       comOpenid: options.comOpenid
