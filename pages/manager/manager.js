@@ -9,7 +9,8 @@ Page({
     communityName: '',
     id: '',
     _id: '',
-    com_id: ''
+    com_id: '',
+    userOpenid: ''
   },
 
   /**
@@ -18,7 +19,8 @@ Page({
   onLoad: function(options) {
     var that = this;
     that.setData({
-      _id: options.manageComOpenid
+      _id: options.manageComOpenid,
+      userOpenid: options.userOpenid
     })
     console.log(options.manageComOpenid)
     //用openid查找数据库
@@ -108,6 +110,17 @@ Page({
       url: 'register/register',
     })
   },
-  // 通过comid来生成二维码
-
+  Field: function(){
+    var field = that.data._id; //当前页面选择的内容
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];
+    var prevPage = pages[pages.length - 2]; //获取上一个页面
+    prevPage.setData({ //修改上一个页面的变量
+      userManageComOpenid: that.data._id,
+      userOpenid: that.data.userOpenid
+    })
+    wx.navigateBack({
+      url: '../index/index',
+    })
+  }
 })
