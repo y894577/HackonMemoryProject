@@ -98,7 +98,14 @@ Page({
           })
         }
       },
-      fail: console.error
+      fail: function(res){
+        console.log(res)
+        wx.showToast({
+          title: '查找失败',
+          image: '../../image/close.svg',
+          duration: 1800
+        })
+      }
     })
   },
   JumpToManager: function() {
@@ -144,10 +151,20 @@ Page({
         } else {
           //返回失败信息
           console.log("查找失败")
+          wx.showToast({
+            title: '查找失败',
+            image: '../../image/close.svg',
+            duration: 1800
+          })
         }
       },
       fail: function(res) {
         console.log("查找失败")
+        wx.showToast({
+          title: '查找失败',
+          image: '../../image/close.svg',
+          duration: 1800
+        })
       }
     })
 
