@@ -9,7 +9,7 @@
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>您当前的体温：</label>
-    <input type="number" name='temperature' placeholder="请输入您的体温"></input>
+    <input type="text" name='temperature' placeholder="请输入您的体温"></input>
     <view class="line"></view>
   </view>
   <button class="confirm" form-type="submit">确认</button>
