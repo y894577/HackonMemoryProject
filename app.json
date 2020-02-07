@@ -11,7 +11,8 @@
     "pages/manager/statistics/statistics",
     "pages/manager/export/export",
     "pages/manager/joinCom/joinCom",
-    "pages/user/temperature/temperature"
+    "pages/user/temperature/temperature",
+    "pages/test/test"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -69,7 +69,7 @@ Page({
     console.log(this.data.string)
     var that=this
     wx.cloud.callFunction({
-      name: 'getRecord',
+      name: 'getWxacode',
       data: {
         isUser:false
       },

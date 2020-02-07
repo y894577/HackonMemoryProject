@@ -5,14 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    fileID:'',
+    FileURL:'',
+    
   },
   fileDownload:function(){
     wx.showLoading({
       title: '下载中...',
     })
     wx.cloud.downloadFile({  
-      fileID: 'cloud://hackthon-memory.6861-hackthon-memory-1301216250/test.xlsx',  
+      fileID: fileID,  
       success: res => {    
         // get temp file path    
         console.log(res.tempFilePath)  
@@ -89,11 +91,29 @@ Page({
     return false
     }
   },
+  getExcel(){
+    var that=this
+    wx.cloud.callFunction({
+      name: 'getExcel',
+      data: {
+        isUser: false
+      },
+      success: function (res) {
+        console.log(res.result)
+        that.setData({
+          fileID:res.result.fileurl[0].fileID,
+          FileURL: res.result.fileurl[0].tempFileURL
+        })
+      },
+      fail: console.error
+    })
+  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getExcel()
   },
 
   /**

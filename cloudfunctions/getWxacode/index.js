@@ -13,8 +13,8 @@ exports.main = async (event, context) => {
   // access_token=getResponse.body.access_token
   const wxContext = cloud.getWXContext()
   id='id='+event.id
-  const result = await cloud.openapi.wxacode.getUnlimited({
-    scene:id,
+  const result = await cloud.openapi.wxacode.get({
+    path: 'pages/index/index?id=ebb6dcb3-bff4-4672-83bb-4bf9d8d60b53',
   })
   filename=id+'.png'
   const upload = await cloud.uploadFile({
