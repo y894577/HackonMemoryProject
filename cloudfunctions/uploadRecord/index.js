@@ -5,11 +5,11 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 exports.main = async (event, context) => {
-  console.log("【uploadRecord】【event参数】" ,event,"【end】")
+  console.log("【uploadRecord】【event参数】", event, "【end】")
   //向Records集合添加记录
   var res = {};
   try {
-    res =  await db.collection('Records').add({
+    res = await db.collection('Records').add({
       // data 字段表示需新增的 JSON 数据
       data: {
         passTel: event.tel,
@@ -40,42 +40,34 @@ exports.main = async (event, context) => {
   })
 
   //向Community集合添加记录
-      //先获取记录的id
+  //先获取记录的id
   var comInfo = await db.collection('Community').where({
     _id: event.comOpenid // 填入当前用户 openid
   }).get()
   console.log("【uploadRecord】【com的信息】", comInfo, "【end】")
 
   var comid = comInfo.data[0]._id
-      //添加记录
-  if(event.flag == "1"){
-    var result = db.collection('Community').doc(comid).update({
-      data: {
-        records: _.unshift(res._id),
-        resident: _.inc(1)
+  //添加记录
+  var result = db.collection('Community').doc(comid).update({
+    data: {
+      records: _.unshift(res._id)
+    }
+  })
+  console.log("【uploadRecord】【result的信息】", result, res, "【end】")
 
-      }
-    })
-    console.log("【uploadRecord】【result的信息】", result, res, "【end】")
-  }
-  else if(event.flag == "2"){
-    var result = db.collection('Community').doc(comid).update({
-      data: {
-        records: _.unshift(res._id),
-        visitor: _.inc(1)
-      }
-    })
-    console.log("【uploadRecord】【result的信息】", result, res, "【end】")
-  }
-  else{
-    var result = db.collection('Community').doc(comid).update({
-      data: {
-        records: _.unshift(res._id)
-      }
-    })
-    console.log("【uploadRecord】【result的信息】", result,res, "【end】")
-  }
-  
+  //更新com的人数信息
+  var r = cloud.callFunction({
+    // 要调用的云函数名称
+    name: 'uploadMemberNum',
+    // 传递给云函数的参数
+    data: {
+      flag: event.flag,
+      comid: comid
+    }
+  })
+  console.log("【uploadRecord】【r】", r,comid,event.flag, "【end】")
+
+
   return res._id
 
 }
