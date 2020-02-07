@@ -48,7 +48,7 @@ Page({
     }
    },
    // 表单提交
-   formSubmit: function(e)  {
+   submitForm: function(e)  {
     let that = this
     let val = e.detail.value
     let ajxtrue = this.data.ajxtrue
@@ -63,15 +63,15 @@ Page({
           toWuhsn: this.data.toWuhsn
         },
         success: res => {
-
+          wx.navigateTo({
+            url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
+          })
         },
         fail: err => {
           console.error('【index】【云函数上传个人基本信息】【失败】', err)
         }
       })
-      wx.navigateTo({
-        url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
-      })
+      
     } else {
     wx.showToast({
       title: '手机号有误',
