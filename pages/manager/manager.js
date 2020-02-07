@@ -94,7 +94,7 @@ Page({
   //通过id来获取数据库内容
   JumpToStatistics: function(e) {
     //需要传参
-    console.log("test"+this.data.com_id)
+    console.log("test" + this.data.com_id)
     wx.navigateTo({
       url: 'statistics/statistics?com_id=' + this.data.com_id,
     })
@@ -107,11 +107,26 @@ Page({
   },
   ReturnComRegister: function() {
     var that = this;
-    wx.redirectTo({
-      url: 'register/register',
+    const db = wx.cloud.database();
+    db.collection('User').where({
+      _openid: that.data.userOpenid
+    }).update({
+      data: {
+        manageComOpenid: '',
+      },
+      success: function(res) {
+        console.log(res)
+        wx.redirectTo({
+          url: 'register/register',
+        })
+      },
+      fail: function(res) {
+        console.log(res)
+      }
     })
+
   },
-  Field: function(){
+  Field: function() {
     var field = that.data._id; //当前页面选择的内容
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];
