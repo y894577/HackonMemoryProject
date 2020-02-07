@@ -34,7 +34,7 @@ exports.main = async (event, context) => {
         name: info.data[0].perInfo.name,
         comOpenid: event.comOpenid,
         userOpenid: event.userOpenid,
-        flag: "2"
+        flag: "1"
       }
     })
     console.log("【submitAddress】【id】", id, "【end】")
@@ -53,7 +53,7 @@ exports.main = async (event, context) => {
         name: info.data[0].perInfo.name,
         comOpenid: event.comOpenid,
         userOpenid: event.userOpenid,
-        flag: "1"
+        flag: "2"
       }
     })
 

@@ -47,14 +47,39 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    console.log(this.data.code)
+    if(this.data.code==""){
+      console.log("无连接，开始递归")
+      this.getImage()
+    }
   },
-
+  getImage:function(){
+    const db = wx.cloud.database();
+    var that=this
+    console.log("尝试获取图片")
+    db.collection('Community').where({
+      _id: this.data._id
+    }).get({
+      success: function (res) {
+        that.setData({
+          code: res.data[0].comQRcode,
+        })
+      },
+      fail: console.error
+    })
+    setTimeout(function(){
+      console.log(that.data.code)
+      if(that.data.code==""){
+        console.log("还是没有图片链接")
+        that.getImage()
+      }
+    },1000)
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**

@@ -14,7 +14,7 @@ Page({
       title: '下载中...',
     })
     wx.cloud.downloadFile({  
-      fileID: fileID,  
+      fileID: this.fileID,  
       success: res => {    
         // get temp file path    
         console.log(res.tempFilePath)  

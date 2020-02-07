@@ -11,12 +11,18 @@ exports.main = async (event, context) => {
   // let getResponse = await got('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx91d0d3fbfd9f3f51&secret=49269c72a432e51aeb58fbbe14783117')
   // console.log(getResponse.body)
   // access_token=getResponse.body.access_token
+
+  userInfo = await db.collection('User').where({
+    _openid: event.userInfo.openId // 填入当前用户 openid
+  }).get()
+  comId = userInfo.data[0].manageComOpenid
+  
   const wxContext = cloud.getWXContext()
   id='id='+event.id
   const result = await cloud.openapi.wxacode.get({
-    path: 'pages/index/index?id=ebb6dcb3-bff4-4672-83bb-4bf9d8d60b53',
+    path: 'pages/index/index?id=' + event.id,
   })
-  filename=id+'.png'
+  filename = event.id+'.png'
   const upload = await cloud.uploadFile({
     cloudPath: filename,
     fileContent: result.buffer,
@@ -26,10 +32,7 @@ exports.main = async (event, context) => {
     fileList: fileID,
   })
   fileUrl = result2.fileList[0].tempFileURL
-  userInfo = await db.collection('User').where({
-    _openid: event.userInfo.openId // 填入当前用户 openid
-  }).get()
-  comId = userInfo.data[0].manageComOpenid
+ 
   await Community.doc(comId).update({
     data: {
       comQRcode:fileUrl
