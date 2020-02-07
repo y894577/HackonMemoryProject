@@ -29,7 +29,7 @@ Page({
         },
         success: res => {
           var id = res.result
-          wx.navigateTo({
+          wx.reLaunch({
             url: '/pages/user/successful/successful?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid 
           })
         },

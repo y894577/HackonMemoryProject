@@ -64,7 +64,7 @@ Page({
           toWuhan: this.data.toWuhan
         },
         success: res => {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
           })
         },

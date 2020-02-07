@@ -37,6 +37,11 @@ Page({
       },
       fail: err => {
         console.error('【adress】【云函数】【提交地址失败】', err)
+        wx.showToast({
+          title: '提交失败',
+          image: '../../image/close.png',
+          duration: 1800
+        })
       }
     })
   },

@@ -16,11 +16,12 @@ Page({
    */
   onLoad: function (options) {
     var TIME = util.formatTime(new Date());
+    var NAME=app.globalData.userName;
     this.setData({
       time: TIME,
+      name:NAME
     });
 
-    this.data.name = app.globalData.userName
   },
 
   //上传登记数据

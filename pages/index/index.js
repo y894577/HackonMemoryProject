@@ -68,7 +68,7 @@ Page({
               userManageComOpenid: res.result.userManageComOpenid
             })
             console.log(res)
-
+            app.globalData.name = res.result.userPerInfo.name
             if(!this.data.show){
               this.jumpToNextPage();
             }
@@ -85,9 +85,8 @@ Page({
 
   },
   onShow:function(){
-    this.onLoad({
-      id: this.id
-    })
+    this.reload()
+    this.onLoad()
   },
   scanQRCode:function(){
     var that = this
@@ -179,7 +178,7 @@ Page({
       name: 'uploadRecord',
       data: {
         tel: this.data.userPerInfo.tel,
-        time: new Date(),
+        time: this.formatTime(new Date()),
         destination: this.data.userPerInfo.addressName,
         name: this.data.userPerInfo.name,
         comOpenid: this.data.comOpenid,
@@ -200,7 +199,19 @@ Page({
     
   },
 
-
+  formatTime: function(date){
+    const formatNumber = n => {
+      n = n.toString()
+      return n[1] ? n : '0' + n
+    }
+      const year  =  date.getFullYear()
+      const month  =  date.getMonth()  +  1
+      const day  =  date.getDate()
+      const hour  =  date.getHours()
+      const minute  =  date.getMinutes()
+      const second  =  date.getSeconds()
+      return  [year,  month,  day].map(formatNumber).join('/')  +  ' '  +  [hour,  minute,  second].map(formatNumber).join(':')
+  },
   // 跳转到来访人员类型选择界面
   jumpToTypePage: function () {
     wx.navigateTo({
