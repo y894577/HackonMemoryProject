@@ -61,7 +61,7 @@ Page({
           userOpenid: this.data.userOpenid,
           name: val.name,
           tel: val.phonenumber,
-          toWuhsn: this.data.toWuhsn
+          toWuhan: this.data.toWuhsn
         },
         success: res => {
           wx.navigateTo({

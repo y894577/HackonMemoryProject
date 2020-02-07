@@ -26,7 +26,7 @@ Page({
         userOpenid: this.data.userOpenid,
         addressName: e.detail.value.unit,
         comOpenid: this.data.comOpenid,
-        time: new Date(),
+        time: this.formatTime(new Date()),
         flag: this.data.flag
       },
       success: res => {
@@ -39,6 +39,16 @@ Page({
         console.error('【adress】【云函数】【提交地址失败】', err)
       }
     })
+  },
+
+  formatTime: function(date){
+      const year  =  date.getFullYear()
+      const month  =  date.getMonth()  +  1
+      const day  =  date.getDate()
+      const hour  =  date.getHours()
+      const minute  =  date.getMinutes()
+      const second  =  date.getSeconds()
+      return  [year,  month,  day].map(formatNumber).join('/')  +  ' '  +  [hour,  minute,  second].map(formatNumber).join(':')
   }
   
 })
