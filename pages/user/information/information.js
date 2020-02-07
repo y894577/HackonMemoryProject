@@ -14,7 +14,7 @@ Page({
    changeSex:function(e){
     console.log('radio-group发生change事件，携带value值为：', e.detail.value)
     this.setData({
-      toWuhsn: (e.detail.value == "是")?true:false
+      toWuhan: (e.detail.value == "是")?true:false
     })
    },
    
@@ -61,7 +61,7 @@ Page({
           userOpenid: this.data.userOpenid,
           name: val.name,
           tel: val.phonenumber,
-          toWuhan: this.data.toWuhsn
+          toWuhan: this.data.toWuhan
         },
         success: res => {
           wx.navigateTo({
