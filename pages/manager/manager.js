@@ -8,7 +8,8 @@ Page({
     code: '',
     communityName: '',
     id: '',
-    _id: ''
+    _id: '',
+    com_id: ''
   },
 
   /**
@@ -33,6 +34,7 @@ Page({
           id: res.data[0].comID,
           communityName: res.data[0].comName,
           code: res.data[0].comQRcode,
+          com_id: res.data[0]._id
         })
       },
       fail: console.error
@@ -90,9 +92,9 @@ Page({
   //通过id来获取数据库内容
   JumpToStatistics: function(e) {
     //需要传参
-    console.log("test"+this.data._id)
+    console.log("test"+this.data.com_id)
     wx.navigateTo({
-      url: 'statistics/statistics?_id=' + this.data._id,
+      url: 'statistics/statistics?com_id=' + this.data.com_id,
     })
   },
   ExportData: function(e) {
