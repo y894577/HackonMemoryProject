@@ -23,18 +23,6 @@ Page({
       _id: options.userOpenid,
       userOpenid: options.userOpenid
     })
-    wx.cloud.callFunction({
-      name: 'getWxacode',
-      success: function(res) {
-        console.log(res.result)
-        that.setData({
-          QRcode: res.result.fileUrl
-        })
-      },
-      fail: function(err) {
-        console.log(err)
-      }
-    })
   },
 
   /**
@@ -115,18 +103,6 @@ Page({
       ComID: result
     })
   },
-  CreateQRcode: function() {
-    var that = this;
-    wx.cloud.callFunction({
-      name: getWxacode,
-      success: function(res) {
-
-      },
-      fail: function(err) {
-        console.log(err)
-      }
-    })
-  },
   UpdateUserComOpenid: function() {
     var that = this;
     const db = wx.cloud.database();
@@ -154,7 +130,7 @@ Page({
         comName: that.data.ComName,
         comManageName: that.data.LeaderName,
         comManageTel: that.data.LeaderPhone,
-        comQRcode: that.data.QRcode,
+        comQRcode:'',
         records: [],
         resident: 0,
         visitor: 0,
@@ -163,6 +139,18 @@ Page({
       console.log(res)
       that.setData({
         _id: res._id
+      })
+      wx.cloud.callFunction({
+        name: 'getWxacode',
+        data: {
+          id: that.data._id
+        },
+        success: function (res) {
+          console.log("【二维码生成成功】")
+        },
+        fail: function (err) {
+          console.log(err)
+        }
       })
       this.UpdateUserComOpenid();
       this.JumpToManager();
