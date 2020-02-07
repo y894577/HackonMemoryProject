@@ -10,7 +10,7 @@
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>社区ID：</label>
-    <input type="number" name='ComID' id="ComID" placeholder="请输入社区ID" bindinput="comIDInput"></input>
+    <input type="text" name='ComID' id="ComID" placeholder="请输入社区ID" bindinput="comIDInput"></input>
     <view class="line"></view>
   </view>
   <view class="confirm" form-type="submit" bindtap="SearchComID">确认</view>
