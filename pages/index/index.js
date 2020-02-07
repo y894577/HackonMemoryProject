@@ -130,11 +130,6 @@ Page({
 
 //跳转个人历史记录界面
   jumpToHistoryPage: function () {
-    if (this.isFistTime()) {
-      console.log("【index】【用户为新用户未填基本信息，跳转基本信息填写界面】")
-      this.jumpToInformationPage();
-    }
-    else
     wx.navigateTo({
       url: '/pages/user/record/record?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
     })
@@ -142,14 +137,9 @@ Page({
 
 //跳转管理人员界面
   jumpToRegisterPage: function () {
-    if (this.isFistTime()) {
-      console.log("【index】【用户为新用户未填基本信息，跳转基本信息填写界面】")
-      this.jumpToInformationPage();
-    }
-    else
-    if(this.data.userPerInfo.userManageComOpenid){
+    if(this.data.userManageComOpenid){
        wx.navigateTo({
-         url: '/pages/manager/manager?userOpenid=' + this.data.userOpenid + '&manageComOpenid=' + this.data.comOpenid
+         url: '/pages/manager/manager?userOpenid=' + this.data.userOpenid + '&manageComOpenid=' + this.data.userManageComOpenid
       })
     }
     else{

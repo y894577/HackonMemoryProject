@@ -8,85 +8,104 @@ Page({
     ComID: "",
     ComName: '',
     LeaderName: '',
-    LeaderPhone: ''
+    LeaderPhone: '',
+    QRcode: '',
+    _id: '',
+    userOpenid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    var that = this;
+    that.setData({
+      _id: options.userOpenid,
+      userOpenid: options.userOpenid
+    })
+    wx.cloud.callFunction({
+      name: 'getWxacode',
+      success: function(res) {
+        console.log(res.result)
+        that.setData({
+          QRcode: res.result.fileUrl
+        })
+      },
+      fail: function(err) {
+        console.log(err)
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   // 获取input框的内容
-  ComNameInput: function(e){
+  ComNameInput: function(e) {
     var that = this;
     that.setData({
       ComName: e.detail.value
     });
   },
-  LeaderNameInput: function (e) {
+  LeaderNameInput: function(e) {
     var that = this;
     that.setData({
       LeaderName: e.detail.value
     })
   },
-  LeaderPhoneInput: function (e) {
+  LeaderPhoneInput: function(e) {
     var that = this;
     that.setData({
       LeaderPhone: e.detail.value
     })
   },
   //加密生成id函数
-  RandomID: function () { // 生成n位长度的字符串
+  RandomID: function() { // 生成n位长度的字符串
     var str = "abcdefghijklmnopqrstuvwxyz0123456789"; // 可以作为常量放到random外面
     var result = "";
     for (var i = 0; i < 8; i++) {
@@ -96,7 +115,34 @@ Page({
       ComID: result
     })
   },
-  UpdateInfo: function(){
+  CreateQRcode: function() {
+    var that = this;
+    wx.cloud.callFunction({
+      name: getWxacode,
+      success: function(res) {
+
+      },
+      fail: function(err) {
+        console.log(err)
+      }
+    })
+  },
+  UpdateUserComOpenid: function() {
+    var that = this;
+    const db = wx.cloud.database();
+    console.log("openid=" + that.data._openid)
+    db.collection('User').where({
+      _openid: that.data._id,
+    }).update({
+      data: {
+        manageComOpenid: that.data._id
+      },
+      success: function(res) {
+        console.log(res)
+      }
+    })
+  },
+  UpdateInfo: function() {
     var that = this;
     this.RandomID();
     // 上传到数据库
@@ -108,27 +154,40 @@ Page({
         comName: that.data.ComName,
         comManageName: that.data.LeaderName,
         comManageTel: that.data.LeaderPhone,
-        comQRcode: '',
-        record: [],
+        comQRcode: that.data.QRcode,
+        records: [],
+        resident: 0,
+        visitor: 0,
       },
     }).then(res => {
       console.log(res)
       that.setData({
         _id: res._id
       })
+      this.UpdateUserComOpenid();
       this.JumpToManager();
+      var field = that.data._id; //当前页面选择的内容
+      var pages = getCurrentPages();
+      var currPage = pages[pages.length - 1];
+      var prevPage = pages[pages.length - 2]; //获取上一个页面
+      prevPage.setData({ //修改上一个页面的变量
+        userManageComOpenid: that.data._id,
+        userOpenid: that.data.userOpenid
+      })
+      wx.navigateTo({
+        url: '../index/index',
+      })
     })
-
   },
-  JumpToManager: function(){
+  JumpToManager: function() {
     wx.redirectTo({
       // 需要传参，暂时没写
-      url: '../manager?_id=' + this.data._id,
+      url: '../manager?manageComOpenid=' + this.data._id + '?userOpenid =' + this.data.userOpenid,
     })
   },
-  JoinToCom: function(){
-    wx.navigateTo({
-      url: '../joinCom/joinCom',
+  JoinToCom: function() {
+    wx.redirectTo({
+      url: '../joinCom/joinCom?manageComOpenid=' + this.data._id + '?userOpenid=' + this.data.userOpenid,
     })
   }
 })
