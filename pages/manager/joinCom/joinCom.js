@@ -93,16 +93,16 @@ Page({
         } else {
           wx.showToast({
             title: '查找失败',
-            image: '../../image/close.svg',
+            image: '../../image/close.png',
             duration: 1800
           })
         }
       },
-      fail: function(res){
+      fail: function(res) {
         console.log(res)
         wx.showToast({
           title: '查找失败',
-          image: '../../image/close.svg',
+          image: '../../image/close.png',
           duration: 1800
         })
       }
@@ -153,7 +153,7 @@ Page({
           console.log("查找失败")
           wx.showToast({
             title: '查找失败',
-            image: '../../image/close.svg',
+            image: '../../image/close.png',
             duration: 1800
           })
         }
@@ -162,7 +162,7 @@ Page({
         console.log("查找失败")
         wx.showToast({
           title: '查找失败',
-          image: '../../image/close.svg',
+          image: '../../image/close.png',
           duration: 1800
         })
       }
