@@ -63,7 +63,7 @@ Page({
           toWuhsn: this.data.toWuhsn
         },
         success: res => {
-       
+
         },
         fail: err => {
           console.error('【index】【云函数上传个人基本信息】【失败】', err)
