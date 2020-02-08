@@ -65,8 +65,6 @@ image{
 .text{
   width: 144rpx;
 	height: 36rpx;
-	left: 302rpx;
-	top: 1248rpx;
 	color: rgba(24, 144, 255, 1);
 	font-size: 24rpx;
 	line-height: 150%;

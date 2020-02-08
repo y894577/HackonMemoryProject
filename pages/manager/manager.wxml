@@ -1,6 +1,7 @@
 <!--pages/manager/manager.wxml-->
 <view class="container">
   <image src='{{code}}' class='code' bindtap='imgYu'></image>
+  <text class='tisi'>点击图片进行保存操作，便于后续打印张贴</text>
   <text class='item'>{{communityName}}</text>
   <text class='id' bindtap='copyText'>ID：{{id}}</text>
   <view class='data' bindtap="JumpToStatistics">查看数据</view>

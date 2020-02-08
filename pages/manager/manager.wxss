@@ -7,27 +7,35 @@
   justify-content:space-around;
 } 
 .code{
-  width: 255px;
-  height: 255px;
-  margin-top:82rpx ;
+  width: 516rpx;
+	height: 516rpx;
+	left: 58rpx;
+  top: 64rpx;
+  margin-top:68rpx ;
 }
 .item{
-  width: 100%;
+  width:100%;
+	height: 60rpx;
+	left: 127rpx;
+	top: 358rpx;
 	color: rgba(80, 80, 80, 1);
-	font-size: 14px;
+	font-size: 40rpx;
 	line-height: 150%;
-  text-align: center;
-  margin-top:40rpx ;
-  margin-bottom: 12rpx;
+	text-align: center;
+  font-weight: bold;
+  margin-top: 40rpx;
+  margin-bottom: 10rpx;
 }
 .id{
   width: 100%;
-	height: 21px;
+	height: 42rpx;
+	left: 111rpx;
+	top: 388rpx;
 	color: rgba(80, 80, 80, 1);
-	font-size: 14px;
+	font-size: 28rpx;
 	line-height: 150%;
   text-align: center;
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
 }
 .data{
   width: 640rpx;
@@ -61,4 +69,14 @@
   align-items: center;
   justify-content: center;
   margin-top:35rpx ;
+}
+.tisi{
+  width: 456rpx;
+	height: 36rpx;
+	left: 73rpx;
+	top: 322rpx;
+	color: rgba(166, 166, 166, 1);
+	font-size: 24rpx;
+	line-height: 150%;
+	text-align: left;
 }
