@@ -12,19 +12,19 @@
 <form bindsubmit="submitForm">
   <view class='col box'>
     <label>社区名称：</label>
-    <input type="text" name='communityName' placeholder="请输入社区名称" bindinput="ComNameInput"></input>
+    <input type="text" name='communityName' placeholder="请输入社区名称"></input>
     <view class="line"></view>
   </view>
   <view class='col box'>
     <label>社区负责人：</label>
-    <input type="text"  name='name' placeholder="请输入姓名" bindinput="LeaderNameInput"></input>
+    <input type="text"  name='name' placeholder="请输入姓名"></input>
     <view class="line"></view>
   </view>
   <view class='col box'>
     <label>社区负责人联系方式：</label>
-    <input type="number"  name='phonenumber' placeholder="请输入电话号码" bindinput='LeaderPhoneInput'></input>
+    <input type="number"  name='phonenumber' placeholder="请输入电话号码"></input>
      <view class="line"></view>
   </view>
-  <view class="confirm" form-type="submit" bindtap="UpdateInfo">确认</view>
+  <button class="confirm" form-type="submit">确认</button>
   <view class="had" bindtap="JoinToCom">加入已有社区</view>
 </form>

@@ -69,48 +69,61 @@ Page({
   onShareAppMessage: function() {
 
   },
-  comIDInput: function(e) {
+  submitForm: function(e) {
+    let val = e.detail.value
+    let comID1=val.ComID
     var that = this;
-    // 获取input填写的id
-    that.setData({
-      comID: e.detail.value
-    });
-  },
-  SearchComID: function() {
-    var that = this;
-    //查找数据库是否有这个id
-    console.log("comid=" + that.data.comID)
-    const db = wx.cloud.database();
-    db.collection('Community').where({
-      comID: that.data.comID
-    }).get({
-      success: function(res) {
-        console.log("acc")
-        console.log(res);
-        if (res.data.length != 0) {
-          that.setData({
-            user_managecomid: res.data[0]._id,
-            manageComOpenid: res.data[0]._openid,
-          })
-          that.JumpToManager();
-          that.Field();
-        } else {
+    if(comID1==''){
+      wx.showToast({
+        title: '社区ID为空',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else{
+      that.setData({
+        comID: comID1
+      });
+      wx.showLoading({
+        title: '查找中...',
+      })
+      //查找数据库是否有这个id
+      console.log("comid=" + that.data.comID)
+      const db = wx.cloud.database();
+      db.collection('Community').where({
+        comID: that.data.comID
+      }).get({
+        success: function(res) {
+          console.log("acc")
+          console.log(res);
+          wx.hideLoading();
+          if (res.data.length != 0) {
+            that.setData({
+              user_managecomid: res.data[0]._id,
+              manageComOpenid: res.data[0]._openid,
+            })
+            that.JumpToManager();
+            that.Field();
+          } else {
+            wx.hideLoading();
+            wx.showToast({
+              title: '查找失败',
+              image: '../../image/close.png',
+              duration: 1800
+            })
+          }
+        },
+        fail: function(res) {
+          console.log(res)
+          wx.hideLoading();
           wx.showToast({
             title: '查找失败',
             image: '../../image/close.png',
             duration: 1800
           })
         }
-      },
-      fail: function(res) {
-        console.log(res)
-        wx.showToast({
-          title: '查找失败',
-          image: '../../image/close.png',
-          duration: 1800
-        })
-      }
-    })
+      })
+    }
   },
   JumpToManager: function() {
     var that = this;

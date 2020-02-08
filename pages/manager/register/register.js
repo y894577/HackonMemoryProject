@@ -73,25 +73,6 @@ Page({
   onShareAppMessage: function() {
 
   },
-  // 获取input框的内容
-  ComNameInput: function(e) {
-    var that = this;
-    that.setData({
-      ComName: e.detail.value
-    });
-  },
-  LeaderNameInput: function(e) {
-    var that = this;
-    that.setData({
-      LeaderName: e.detail.value
-    })
-  },
-  LeaderPhoneInput: function(e) {
-    var that = this;
-    that.setData({
-      LeaderPhone: e.detail.value
-    })
-  },
   //加密生成id函数
   RandomID: function() { // 生成n位长度的字符串
     var str = "abcdefghijklmnopqrstuvwxyz0123456789"; // 可以作为常量放到random外面
@@ -118,54 +99,86 @@ Page({
       }
     })
   },
-  UpdateInfo: function() {
-    var that = this;
-    this.RandomID();
-    // 上传到数据库
-    // 根据上传的信息上传manager
-    const db = wx.cloud.database();
-    db.collection('Community').add({
-      data: {
-        comID: that.data.ComID,
-        comName: that.data.ComName,
-        comManageName: that.data.LeaderName,
-        comManageTel: that.data.LeaderPhone,
-        comQRcode:'',
-        records: [],
-        resident: 0,
-        visitor: 0,
-      },
-    }).then(res => {
-      console.log(res)
+  submitForm: function(e) {
+    let val = e.detail.value
+    let communityName1=val.communityName
+    let name1=val.name
+    let phonenumber1=val.phonenumber
+    if(communityName1==''){
+      wx.showToast({
+        title: '社区名称为空',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else if(name1==''){
+      wx.showToast({
+        title: '负责人姓名为空',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else if(phonenumber1==''){
+      wx.showToast({
+        title: '联系方式为空',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else{
+      var that = this;
       that.setData({
-        _id: res._id
-      })
-      wx.cloud.callFunction({
-        name: 'getWxacode',
+        ComName: communityName1,
+        LeaderName: name1,
+        LeaderPhone: phonenumber1
+      });
+      this.RandomID();
+      // 上传到数据库
+      // 根据上传的信息上传manager
+      const db = wx.cloud.database();
+      db.collection('Community').add({
         data: {
-          id: that.data._id
+          comID: that.data.ComID,
+          comName: that.data.ComName,
+          comManageName: that.data.LeaderName,
+          comManageTel: that.data.LeaderPhone,
+          comQRcode:'',
+          records: [],
+          resident: 0,
+          visitor: 0,
         },
-        success: function (res) {
-          console.log("【二维码生成成功】")
-        },
-        fail: function (err) {
-          console.log(err)
-        }
+      }).then(res => {
+        console.log(res)
+        that.setData({
+          _id: res._id
+        })
+        wx.cloud.callFunction({
+          name: 'getWxacode',
+          data: {
+            id: that.data._id
+          },
+          success: function (res) {
+            console.log("【二维码生成成功】")
+          },
+          fail: function (err) {
+            console.log(err)
+          }
+        })
+        this.UpdateUserComOpenid();
+        this.JumpToManager();
+        var field = that.data._id; //当前页面选择的内容
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];
+        var prevPage = pages[pages.length - 2]; //获取上一个页面
+        prevPage.setData({ //修改上一个页面的变量
+          userManageComOpenid: that.data._id,
+          userOpenid: that.data.userOpenid
+        })
+        wx.navigateTo({
+          url: '../index/index',
+        })
       })
-      this.UpdateUserComOpenid();
-      this.JumpToManager();
-      var field = that.data._id; //当前页面选择的内容
-      var pages = getCurrentPages();
-      var currPage = pages[pages.length - 1];
-      var prevPage = pages[pages.length - 2]; //获取上一个页面
-      prevPage.setData({ //修改上一个页面的变量
-        userManageComOpenid: that.data._id,
-        userOpenid: that.data.userOpenid
-      })
-      wx.navigateTo({
-        url: '../index/index',
-      })
-    })
+    }
   },
   JumpToManager: function() {
     wx.redirectTo({

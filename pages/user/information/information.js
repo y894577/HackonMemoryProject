@@ -54,9 +54,27 @@ Page({
     let that = this
     let val = e.detail.value
     let ajxtrue = this.data.ajxtrue
-    app.globalData.name = val.name
-    if (ajxtrue == true) {
+    if(val.name=='')
+    {
+      wx.showToast({
+        title: '姓名未填写',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else if(ajxtrue == false) {
+      wx.showToast({
+        title: '手机号有误',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else{
     //表单提交进行
+      app.globalData.name = val.name  
+      wx.showLoading({
+        title: '上传中...',
+      })
       wx.cloud.callFunction({
         name: 'uploadBasicInfo',
         data: {
@@ -66,22 +84,23 @@ Page({
           toWuhan: this.data.toWuhan
         },
         success: res => {
+          wx.hideLoading();
           wx.redirectTo({
             url: '/pages/user/type/type?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid
           })
         },
         fail: err => {
           console.error('【index】【云函数上传个人基本信息】【失败】', err)
+          wx.hideLoading();
+          wx.showToast({
+            title: '上传失败',
+            image: '../../image/close.png',
+            duration: 1800
+          })
         }
       })
       
-    } else {
-    wx.showToast({
-      title: '手机号有误',
-      icon: 'success',
-      duration: 2000
-    })
-    }
+    } 
    },
   
  

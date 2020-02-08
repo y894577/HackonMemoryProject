@@ -20,30 +20,44 @@ Page({
 
   submitForm: function(e){
     //判空
-    wx.cloud.callFunction({
-      name: 'submitAddress',
-      data: {
-        userOpenid: this.data.userOpenid,
-        addressName: e.detail.value.unit,
-        comOpenid: this.data.comOpenid,
-        time: this.formatTime(new Date()),
-        flag: this.data.flag
-      },
-      success: res => {
-        var id = res.result
-        wx.navigateTo({
-          url: '/pages/user/temperature/temperature?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&id=' + id
-        })
-      },
-      fail: err => {
-        console.error('【adress】【云函数】【提交地址失败】', err)
-        wx.showToast({
-          title: '提交失败',
-          image: '../../image/close.png',
-          duration: 1800
-        })
-      }
-    })
+    if(e.detail.value.unit==''){
+      wx.showToast({
+        title: '地址为空',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
+    else{
+      wx.showLoading({
+        title: '上传中...',
+      })
+      wx.cloud.callFunction({
+        name: 'submitAddress',
+        data: {
+          userOpenid: this.data.userOpenid,
+          addressName: e.detail.value.unit,
+          comOpenid: this.data.comOpenid,
+          time: this.formatTime(new Date()),
+          flag: this.data.flag
+        },
+        success: res => {
+          var id = res.result
+          wx.hideLoading();
+          wx.navigateTo({
+            url: '/pages/user/temperature/temperature?userOpenid=' + this.data.userOpenid + '&comOpenid=' + this.data.comOpenid + '&id=' + id
+          })
+        },
+        fail: err => {
+          console.error('【adress】【云函数】【提交地址失败】', err)
+          wx.hideLoading();
+          wx.showToast({
+            title: '上传失败',
+            image: '../../image/close.png',
+            duration: 1800
+          })
+        }
+      })
+    }
   },
 
   formatTime: function(date){
