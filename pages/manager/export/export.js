@@ -64,7 +64,7 @@ Page({
         name:"sendEmail",
         data:{
             email:e.detail.value,
-            html:FileURL
+            html:this.data.FileURL
         },
         success(res){
           console.log("发送成功",res),
