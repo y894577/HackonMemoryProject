@@ -56,22 +56,23 @@ Page({
             console.log(res.data[0].visitor)
             var list1 = 'list[1].number'
             var list2 = 'list[2].number'
+            var list0 = 'list[0].number'
             that.setData({
               [list1]: res.data[0].resident,
-              [list2]: res.data[0].visitor
+              [list2]: res.data[0].visitor,
+              [list0]: res.data[0].resident + res.data[0].visitor,
             })
           },
           fail:function(err){
             console.log(err)
           }
         })
-        var list0 = 'list[0].number'
         var r = that.data.resident
         var v = that.data.visitor
         that.setData({
           information: res.result.recordsList,
           //人数统计
-          [list0]: res.result.recordsList.length,
+          
 
         })
       },

@@ -34,7 +34,7 @@ exports.main = async (event, context) => {
     let arr = [];
     arr.push(recordsList[key].passTime)
     arr.push(recordsList[key].passerName)
-    arr.push(recordsList[key].passerTel)
+    arr.push(recordsList[key].passTel)
     arr.push(recordsList[key].passerDestination)
     arr.push(recordsList[key].temp)
     alldata.push(arr)
