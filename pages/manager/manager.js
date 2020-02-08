@@ -49,7 +49,7 @@ Page({
         wx.getClipboardData({
           success: function (res) {
             wx.showToast({
-              title: '复制成功'
+              title: '复制ID成功'
             })
           }
         })
