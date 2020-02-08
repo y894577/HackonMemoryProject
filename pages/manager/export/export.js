@@ -7,7 +7,6 @@ Page({
   data: {
     fileID:'',
     FileURL:'',
-    
   },
   fileDownload:function(){
     wx.showLoading({
@@ -52,46 +51,70 @@ Page({
   },
   
 
-  // 邮箱验证部分  
-  inputemail:function (e) {
-    let email = e.detail.value
-    let checkedNum=this.checkEmail(email)
-    if(checkedNum){
-      wx.showLoading({
-        title: '发送中...',
-      })
-      wx.cloud.callFunction({
-        name:"sendEmail",
-        data:{
-            email:e.detail.value,
-            html:this.data.FileURL
-        },
-        success(res){
-          console.log("发送成功",res),
-          wx.hideLoading();
-          wx.showToast({
-            title: '发送成功',
-          })
-        },
-        fail(res){
-          wx.hideLoading();
-          wx.showToast({
-            title: '发送失败',
-            image: '../../image/close.png',
-            duration: 1800
-          })
-          console.log("发送失败",res)
-        }
+
+  submitForm:function(e){
+    var that = this;
+    let val= e.detail.value
+    if(val.email=='')
+    {
+      wx.showToast({
+        title: '邮箱地址为空',
+        image: '../../image/close.png',
+        duration: 2000
       })
     }
+    else{
+      let email =val.email
+      let checkedNum=this.checkEmail(email)
+      if(checkedNum){
+        wx.showModal({
+          title: '提示',
+          content: '请仔细检查以下邮箱是否正确：\n'+email,
+          success: function (res) {
+            if (res.confirm) {//这里是点击了确定以后
+              console.log('用户点击确定')
+              wx.showLoading({
+                title: '发送中...',
+              })
+              wx.cloud.callFunction({
+                name:"sendEmail",
+                data:{
+                    email:val.email,
+                    html:that.data.FileURL
+                },
+                success(res){
+                  console.log("发送成功",res),
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '发送成功',
+                  })
+                },
+                fail(res){
+                  wx.hideLoading();
+                  wx.showToast({
+                    title: '发送失败',
+                    image: '../../image/close.png',
+                    duration: 1800
+                  })
+                  console.log("发送失败",res)
+                }
+              })
+            } else {//这里是点击了取消以后
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    }
   },
+  // 邮箱验证部分  
   checkEmail: function (email) {
     let str = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/
     if (str.test(email)) {
       return true
     } else {
     wx.showToast({
-      title: '请填写正确的邮箱号',
+      title: '请填写正确邮箱',
     })
     return false
     }
