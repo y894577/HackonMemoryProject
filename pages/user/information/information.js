@@ -1,4 +1,5 @@
 // pages/user/information/information.js
+const app = getApp()
 Page({
 
   /**
@@ -53,7 +54,7 @@ Page({
     let that = this
     let val = e.detail.value
     let ajxtrue = this.data.ajxtrue
-    
+    app.globalData.name = val.name
     if (ajxtrue == true) {
     //表单提交进行
       wx.cloud.callFunction({
