@@ -13,6 +13,9 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.cloud.callFunction({
       // 需要调用的云函数名
       name: 'getRecord',
@@ -21,12 +24,14 @@ Page({
         isUser: true
       },
       success: function (res) {
+        wx.hideLoading();
         console.log(res.result)
         that.setData({
           newList: res.result.recordsList
         })
       },
       fail: function (err) {
+        wx.hideLoading();
         console.log(err)
       }
     })
