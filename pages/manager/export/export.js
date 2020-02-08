@@ -113,6 +113,11 @@ Page({
           FileURL: res.result.fileurl[0].tempFileURL
         })
         wx.hideLoading();
+        wx.showToast({
+          title: '成功生成excel',
+          icon: 'success',
+          duration: 1800
+        })
         console.log('fileID:',that.data.fileID,',FileURL:',that.data.FileURL)
       },
       fail: err => {
