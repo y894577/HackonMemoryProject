@@ -42,7 +42,29 @@ Page({
       fail: console.error
     })
   },
-
+  copyText: function (e) {
+    wx.setClipboardData({
+      data: this.data.id,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          }
+        })
+      }
+    })
+  },
+  imgYu: function (e){
+    var that=this;
+    var src=that.data.code;
+    var imgList=[that.data.code];
+    wx.previewImage({
+      current:src,
+      urls: imgList,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
