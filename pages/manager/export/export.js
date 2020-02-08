@@ -14,7 +14,7 @@ Page({
       title: '下载中...',
     })
     wx.cloud.downloadFile({  
-      fileID: this.fileID,  
+      fileID: this.data.fileID,  
       success: res => {    
         // get temp file path    
         console.log(res.tempFilePath)  
@@ -44,6 +44,8 @@ Page({
         console.log('失败')
         wx.showToast({
           title: '文件下载失败',
+          image: '../../image/close.png',
+          duration: 1800
         })
       }
     })
@@ -61,7 +63,8 @@ Page({
       wx.cloud.callFunction({
         name:"sendEmail",
         data:{
-            email:e.detail.value
+            email:e.detail.value,
+            html:FileURL
         },
         success(res){
           console.log("发送成功",res),
@@ -74,6 +77,8 @@ Page({
           wx.hideLoading();
           wx.showToast({
             title: '发送失败',
+            image: '../../image/close.png',
+            duration: 1800
           })
           console.log("发送失败",res)
         }
@@ -93,6 +98,9 @@ Page({
   },
   getExcel(){
     var that=this
+    wx.showLoading({
+      title: '生成excel文件中...',
+    })
     wx.cloud.callFunction({
       name: 'getExcel',
       data: {
@@ -104,8 +112,18 @@ Page({
           fileID:res.result.fileurl[0].fileID,
           FileURL: res.result.fileurl[0].tempFileURL
         })
+        wx.hideLoading();
+        console.log('fileID:',that.data.fileID,',FileURL:',that.data.FileURL)
       },
-      fail: console.error
+      fail: err => {
+        wx.hideLoading();
+        console.log('生成excel文件失败',err)
+        wx.showToast({
+          title: '生成失败',
+          image: '../../image/close.png',
+          duration: 1800
+        })
+      }
     })
   },
   

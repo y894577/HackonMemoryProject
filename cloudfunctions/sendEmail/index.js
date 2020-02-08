@@ -16,16 +16,18 @@ var config = {
 var transporter = nodemailer.createTransport(config);
 // 云函数入口函数
 exports.main = async(event, context) => {
+  var htmltext =
+    '<p>您好，您的社区的所有数据已经导出</p> <p>请点击下方链接下载excel文件</p> '+event.html
   // 创建一个邮件对象
   var mail = {
     // 发件人
-    from: '来自清风自来 <1152719547@qq.com>',
+    from: '来自记疫团队 <1152719547@qq.com>',
     // 主题
-    subject: '来自清风自来的问候',
+    subject: '来自记疫团队的社区数据文件',
     // 收件人
     to: event.email,
     // 邮件内容，text或者html格式
-    text: '你好啊，编程小石头' //可以是链接，也可以是验证码
+    html: htmltext //可以是链接，也可以是验证码
   };
 
   let res = await transporter.sendMail(mail);
