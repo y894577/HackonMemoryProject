@@ -24,7 +24,7 @@
 
 ## 部署说明
 
-这个项目具体的部署参考 deployment.md
+这个项目具体的部署参考 [deployment.md]https://gitee.com/kenny_chan/tcb_hackthon_memory/blob/%E7%89%88%E6%9C%AC1/deployment.md)
 
 ## 开发说明
 
