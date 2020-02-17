@@ -40,7 +40,8 @@
 ## 联系方式
 
 有任何问题，可以通过下方的联系方式联系我。
-kenny.yb.chan@outlook.com
+
+- 邮箱：kenny.yb.chan@outlook.com
 
 ## LICENSE
 [ GNU Affero General Public License v3.0](https://gitee.com/kenny_chan/tcb_hackthon_memory/blob/%E7%89%88%E6%9C%AC1/LICENSE)
