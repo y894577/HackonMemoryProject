@@ -32,6 +32,7 @@
 - 新建 Feat_xxx 分支
 - 提交代码
 - 新建 Pull Request
+- 详细说明可以参考[contributing.md](https://gitee.com/kenny_chan/tcb_hackthon_memory/blob/%E7%89%88%E6%9C%AC1/contributing.md)
 
 ## Bug 反馈
 
