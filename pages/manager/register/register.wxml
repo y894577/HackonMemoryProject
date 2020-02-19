@@ -9,7 +9,7 @@
   </view>
 </view>
 <!--信息填写-->
-<form bindsubmit="submitForm">
+<form bindsubmit="SubmitForm">
   <view class='col box'>
     <label>社区名称：</label>
     <input type="text" name='communityName' placeholder="请输入社区名称"></input>

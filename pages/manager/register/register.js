@@ -99,7 +99,7 @@ Page({
       }
     })
   },
-  submitForm: function(e) {
+  SubmitForm: function(e) {
     let val = e.detail.value
     let communityName1=val.communityName
     let name1=val.name
