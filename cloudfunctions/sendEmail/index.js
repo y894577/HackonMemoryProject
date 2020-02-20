@@ -8,8 +8,8 @@ var config = {
   host: 'smtp.qq.com', //网易163邮箱 smtp.163.com
   port: 465, //网易邮箱端口 25
   auth: {
-    user: '1152719547@qq.com', //邮箱账号
-    pass: 'gdpiiwyucerfbafd' //邮箱的授权码
+    user: '', //邮箱账号
+    pass: '' //邮箱的授权码
   }
 };
 // 创建一个SMTP客户端对象

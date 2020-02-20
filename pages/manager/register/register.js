@@ -11,7 +11,8 @@ Page({
     LeaderPhone: '',
     QRcode: '',
     _id: '',
-    userOpenid: ''
+    userOpenid: '',
+    ajxtrue:false,
   },
 
   /**
@@ -24,7 +25,27 @@ Page({
       userOpenid: options.userOpenid
     })
   },
-
+  blurPhone: function(e) {
+    var phone = e.detail.value;
+    let that = this
+    if (!(/^1[34578]\d{9}$/.test(phone))) {
+     this.setData({
+      ajxtrue: false
+     })
+     if (phone.length >= 11) {
+      wx.showToast({
+       title: '手机号有误',
+       icon: 'success',
+       duration: 2000
+      })
+     }
+    } else {
+     this.setData({
+      ajxtrue: true
+     })
+     console.log('验证成功', that.data.ajxtrue)
+    }
+   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -125,58 +146,82 @@ Page({
         duration: 2000
       })
     }
+    else if(this.data.ajxtrue == false) {
+      wx.showToast({
+        title: '手机号有误',
+        image: '../../image/close.png',
+        duration: 2000
+      })
+    }
     else{
-      var that = this;
-      that.setData({
-        ComName: communityName1,
-        LeaderName: name1,
-        LeaderPhone: phonenumber1
-      });
-      this.RandomID();
-      // 上传到数据库
-      // 根据上传的信息上传manager
-      const db = wx.cloud.database();
-      db.collection('Community').add({
+      wx.cloud.init()
+      wx.cloud.callFunction({
+        name: 'msgcheck',
         data: {
-          comID: that.data.ComID,
-          comName: that.data.ComName,
-          comManageName: that.data.LeaderName,
-          comManageTel: that.data.LeaderPhone,
-          comQRcode:'',
-          records: [],
-          resident: 0,
-          visitor: 0,
-        },
+          "content": communityName1
+        }
       }).then(res => {
-        console.log(res)
-        that.setData({
-          _id: res._id
+      console.log(res.result)
+      if (res.result.code == 300) {
+        wx.showModal({
+          title: '提醒',
+          content: '请注意检查社区名称，不要输入违规言论',
+          showCancel:false
         })
-        wx.cloud.callFunction({
-          name: 'getWxacode',
-          data: {
-            id: that.data._id
-          },
-          success: function (res) {
-            console.log("【二维码生成成功】")
-          },
-          fail: function (err) {
-            console.log(err)
-          }
-        })
-        this.UpdateUserComOpenid();
-        this.JumpToManager();
-        var field = that.data._id; //当前页面选择的内容
-        var pages = getCurrentPages();
-        var currPage = pages[pages.length - 1];
-        var prevPage = pages[pages.length - 2]; //获取上一个页面
-        prevPage.setData({ //修改上一个页面的变量
-          userManageComOpenid: that.data._id,
-          userOpenid: that.data.userOpenid
-        })
-        wx.navigateTo({
-          url: '../index/index',
-        })
+      } else {
+         var that = this;
+          that.setData({
+            ComName: communityName1,
+            LeaderName: name1,
+            LeaderPhone: phonenumber1
+          });
+          this.RandomID();
+          // 上传到数据库
+          // 根据上传的信息上传manager
+          const db = wx.cloud.database();
+          db.collection('Community').add({
+            data: {
+              comID: that.data.ComID,
+              comName: that.data.ComName,
+              comManageName: that.data.LeaderName,
+              comManageTel: that.data.LeaderPhone,
+              comQRcode:'',
+              records: [],
+              resident: 0,
+              visitor: 0,
+            },
+          }).then(res => {
+            console.log(res)
+            that.setData({
+              _id: res._id
+            })
+            wx.cloud.callFunction({
+              name: 'getWxacode',
+              data: {
+                id: that.data._id
+              },
+              success: function (res) {
+                console.log("【二维码生成成功】")
+              },
+              fail: function (err) {
+                console.log(err)
+              }
+            })
+            this.UpdateUserComOpenid();
+            this.JumpToManager();
+            var field = that.data._id; //当前页面选择的内容
+            var pages = getCurrentPages();
+            var currPage = pages[pages.length - 1];
+            var prevPage = pages[pages.length - 2]; //获取上一个页面
+            prevPage.setData({ //修改上一个页面的变量
+              userManageComOpenid: that.data._id,
+              userOpenid: that.data.userOpenid
+            })
+            wx.navigateTo({
+              url: '../index/index',
+            })
+          })
+        }
       })
     }
   },

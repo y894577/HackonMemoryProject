@@ -32,6 +32,9 @@ Page({
   onLoad: function (options) {
     var that = this;
     //根据_id查找社区
+    wx.showLoading({
+      title: '加载中...',
+    })
     var TIME = util.formatSmallTime(new Date());
     this.setData({
       date: TIME,
@@ -69,12 +72,12 @@ Page({
         })
         var r = that.data.resident
         var v = that.data.visitor
+        
         that.setData({
           information: res.result.recordsList,
           //人数统计
-          
-
         })
+        wx.hideLoading();
       },
       fail: function (err) {
         console.log(err)
