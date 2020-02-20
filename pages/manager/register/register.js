@@ -1,4 +1,5 @@
 // pages/manager/register/register.js
+const config=require('../../config.js')
 Page({
 
   /**
@@ -96,7 +97,7 @@ Page({
   },
   //加密生成id函数
   RandomID: function() { // 生成n位长度的字符串
-    var str = "abcdefghijklmnopqrstuvwxyz0123456789"; // 可以作为常量放到random外面
+    var str = config.QRCodeID; // 可以作为常量放到random外面
     var result = "";
     for (var i = 0; i < 8; i++) {
       result += str[parseInt(Math.random() * str.length)];
