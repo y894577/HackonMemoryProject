@@ -5,6 +5,41 @@
 在微信小程序开发工具中选择该项目根目录并导入
 ### 部署云开发
 部署`/cloudfunctions`中的云函数
+### 云开发数据库结构
+- Community 社区信息表
+- Records 出入记录表
+- User 用户信息表
+#### 数据库集合
+##### Community
+| field         | type   |
+| ------------- | ------ |
+| _id           | string |
+| comID         | string |
+| comManageName | string |
+| comManageTel  | int    |
+| comName       | string |
+| comQRcode     | string |
+| records       | array  |
+
+##### Records
+| field             | type   |
+| ----------------- | ------ |
+| _id               | string |
+| passTime          | date   |
+| passerDestination | string |
+| passerName        | string |
+| passerTel         | int    |
+| temp              | double |
+
+##### Records
+| field           | type   |
+| --------------- | ------ |
+| _openid         | string |
+| _id             | string |
+| manageComOpenid | string |
+| records         | array  |
+
+
 ### Bug 反馈
 如果有 Bug ，请通过issue、底部点评，或者下面的联系方式反馈，非常感谢你的反馈！
 ### 联系方式
