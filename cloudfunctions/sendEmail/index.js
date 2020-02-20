@@ -21,7 +21,7 @@ exports.main = async(event, context) => {
   // 创建一个邮件对象
   var mail = {
     // 发件人
-    from: '来自记疫团队 <1152719547@qq.com>',
+    from: '来自记疫团队',
     // 主题
     subject: '来自记疫团队的社区数据文件',
     // 收件人
